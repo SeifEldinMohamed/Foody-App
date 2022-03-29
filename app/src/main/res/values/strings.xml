@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Foody</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="recipes">Recipes</string>
     <string name="favourite">Favourite</string>
@@ -8,4 +8,12 @@
     <string name="no_internet_connection">No Internet Connection</string>
     <string name="restaurant_image_description_in_floatiing_action_button">restaurant image description in floatiing action button</string>
     <string name="emoji_sad_image_descriiption">emoji sad image descriiption</string>
+    <string name="title">Title</string>
+    <string name="vegan">Vegan</string>
+    <string name="description">Description</string>
+    <string name="_100">100</string>
+    <string name="clock_image_description">clock image description</string>
+    <string name="heart_image_descritpion">heart image descritpion</string>
+    <string name="food_recipe_image_description">food recipe image description</string>
+    <string name="leaf_image_description">leaf image description</string>
 </resources>
