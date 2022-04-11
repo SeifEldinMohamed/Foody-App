@@ -1,7 +1,7 @@
 package com.seif.foody.di
 
-import com.seif.foody.Constants.Companion.BASE_URL
-import com.seif.foody.FoodRecipesApi
+import com.seif.foody.utils.Constants.Companion.BASE_URL
+import com.seif.foody.data.network.FoodRecipesApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -45,7 +45,7 @@ object NetworkModule {
 
     @Singleton // application scope
     @Provides // we use Provides annotation bec we use retrofit library which is not created by us
-    fun provideApiService(retrofit: Retrofit): FoodRecipesApi{
+    fun provideApiService(retrofit: Retrofit): FoodRecipesApi {
         return retrofit.create(FoodRecipesApi::class.java)
     }
 

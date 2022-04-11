@@ -1,5 +1,6 @@
-package com.seif.foody
+package com.seif.foody.data
 
+import com.seif.foody.data.network.FoodRecipesApi
 import com.seif.foody.models.FoodRecipe
 import retrofit2.Response
 import javax.inject.Inject

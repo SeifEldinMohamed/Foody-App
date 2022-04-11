@@ -1,4 +1,4 @@
-package com.seif.foody
+package com.seif.foody.data.network
 
 import com.seif.foody.models.FoodRecipe
 import retrofit2.Response

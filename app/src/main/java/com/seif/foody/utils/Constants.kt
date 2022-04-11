@@ -1,4 +1,4 @@
-package com.seif.foody
+package com.seif.foody.utils
 
 class Constants {
     companion object{
