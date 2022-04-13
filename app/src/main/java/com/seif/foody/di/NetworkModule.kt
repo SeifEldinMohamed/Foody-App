@@ -5,6 +5,7 @@ import com.seif.foody.data.network.FoodRecipesApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -12,7 +13,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
-@InstallIn() // we need to specify component -> so all this binding inside this network module will be available inside Application Components
+@InstallIn(SingletonComponent::class) // we need to specify component -> so all this binding inside this network module will be available inside Application Components
 object NetworkModule {
 
     @Singleton
