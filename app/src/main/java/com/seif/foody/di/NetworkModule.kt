@@ -15,7 +15,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class) // we need to specify component -> so all this binding inside this network module will be available inside Application Components
 object NetworkModule {
-
     @Singleton
     @Provides
     fun provideOkHttpClient(): OkHttpClient{
@@ -24,13 +23,11 @@ object NetworkModule {
             .connectTimeout(15, TimeUnit.SECONDS)
             .build()
     }
-
     @Singleton
     @Provides
     fun provideGsonConverterFactory(): GsonConverterFactory{
         return GsonConverterFactory.create()
     }
-
     @Singleton
     @Provides
     fun provideRetrofitInstance(
@@ -43,11 +40,9 @@ object NetworkModule {
             .addConverterFactory(gsonConverterFactory)
             .build()
     }
-
     @Singleton // application scope
     @Provides // we use Provides annotation bec we use retrofit library which is not created by us
     fun provideApiService(retrofit: Retrofit): FoodRecipesApi {
         return retrofit.create(FoodRecipesApi::class.java)
     }
-
 }
