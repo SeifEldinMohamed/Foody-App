@@ -32,7 +32,7 @@ class RecipeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         mView = inflater.inflate(R.layout.fragment_reciepe, container, false)
         setupRecyclerView()
@@ -63,11 +63,11 @@ class RecipeFragment : Fragment() {
         mView.rv_recipes.adapter = myAdapter
         showShimmerEffectAndHideRecyclerView()
     }
-    fun showRecyclerViewAndHideShimmerEffect(){
+    private fun showRecyclerViewAndHideShimmerEffect(){
         mView.shimmerFrameLayout.visibility = View.GONE
         mView.rv_recipes.visibility = View.VISIBLE
     }
-    fun showShimmerEffectAndHideRecyclerView(){
+    private fun showShimmerEffectAndHideRecyclerView(){
         mView.shimmerFrameLayout.visibility = View.VISIBLE
         mView.rv_recipes.visibility = View.GONE
     }
