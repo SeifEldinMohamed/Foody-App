@@ -1,6 +1,7 @@
 package com.seif.foody.data.database
 
 import androidx.room.Database
+import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
 @Database(
@@ -9,7 +10,7 @@ import androidx.room.TypeConverters
     exportSchema = false
 )
 @TypeConverters(RecipesTypeConverter::class)
-abstract class RecipesDatabase {
+abstract class RecipesDatabase: RoomDatabase() {
 
     abstract fun recipesDao(): RecipesDao
 
