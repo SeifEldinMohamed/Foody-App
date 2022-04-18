@@ -1,5 +1,6 @@
 package com.seif.foody.data
 
+import com.seif.foody.data.network.RemoteDataSource
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package com.seif.foody.data
+package com.seif.foody.data.network
 
 import com.seif.foody.data.network.FoodRecipesApi
 import com.seif.foody.models.FoodRecipe
