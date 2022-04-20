@@ -2,7 +2,6 @@ package com.seif.foody.di
 
 import android.content.Context
 import androidx.room.Room
-import androidx.room.RoomDatabase
 import com.seif.foody.MyApplication
 import com.seif.foody.data.database.RecipesDatabase
 import com.seif.foody.utils.Constants.Companion.DATABASE_NAME
