@@ -4,13 +4,13 @@ import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.seif.foody.data.Repository
+import com.seif.foody.data.database.RecipesEntity
 import com.seif.foody.models.FoodRecipe
 import com.seif.foody.utils.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import javax.inject.Inject
@@ -21,18 +21,34 @@ class MainViewModel @Inject constructor(
     application: Application
 ) : AndroidViewModel(application) { // since we will need a application reference so we will use AndroidViewModel
 
-    var recipesResponse: MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
+    /** ROOM DATABASE**/
 
+    val readRecipes: LiveData<List<RecipesEntity>> = repository.locale.readDatabase().asLiveData()
+    private fun insertRecipes(recipesEntity:RecipesEntity){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.locale.insertRecipes(recipesEntity)
+        }
+    }
+
+    /** RETROFIT **/
+    var recipesResponse: MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
     fun getRecipes(queries: Map<String, String>) = viewModelScope.launch {
         getRecipesSafeCall(queries)
     }
 
     private suspend fun getRecipesSafeCall(queries: Map<String, String>) {
-        recipesResponse.value = NetworkResult.Loading() // first case while trying to connect with api until we gor a response.
+        recipesResponse.value =
+            NetworkResult.Loading() // first case while trying to connect with api until we gor a response.
         if (hasInternetConnection()) { // if we have internet connection then we want to make get request to our api and store the result inside recipesResult Mutable live data object
             try {
                 val response = repository.remote.getRecipes(queries)
                 recipesResponse.value = handleFoodRecipesResponse(response)
+
+                // cashing data
+                val foodRecipe = recipesResponse.value!!.data
+                if (foodRecipe!=null){
+                    offlineCacheRecipes(foodRecipe)
+                }
             } catch (e: Exception) {
                 recipesResponse.value = NetworkResult.Error("Recipes Not Found")
 
@@ -42,7 +58,13 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    private fun handleFoodRecipesResponse(response: Response<FoodRecipe>): NetworkResult<FoodRecipe>? {
+    private fun offlineCacheRecipes(foodRecipe: FoodRecipe) {
+        val recipesEntity = RecipesEntity(foodRecipe)
+        insertRecipes(recipesEntity)
+
+    }
+
+    private fun handleFoodRecipesResponse(response: Response<FoodRecipe>): NetworkResult<FoodRecipe> {
         return when {
             response.message().toString().contains("timeout") -> NetworkResult.Error("Timeout")
             response.code() == 402 -> NetworkResult.Error("Api Key Limited.")
@@ -69,7 +91,6 @@ class MainViewModel @Inject constructor(
             else -> false
         }
     }
-
 }
 /** Note:
  * recipesResponse.value : used in main thread only
