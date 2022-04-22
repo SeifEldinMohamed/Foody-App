@@ -14,9 +14,9 @@ import com.seif.foody.viewmodels.MainViewModel
 import com.seif.foody.R
 import com.seif.foody.adapters.RecipesAdapter
 import com.seif.foody.utils.NetworkResult
+import com.seif.foody.utils.observeOnce
 import com.seif.foody.viewmodels.RecipesViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_reciepe.*
 import kotlinx.android.synthetic.main.fragment_reciepe.view.*
 import kotlinx.coroutines.launch
 
@@ -52,7 +52,7 @@ class RecipeFragment : Fragment() {
 
     private fun readDatabase() {
         lifecycleScope.launch {
-            mainViewModel.readRecipes.observe(viewLifecycleOwner){ database ->
+            mainViewModel.readRecipes.observeOnce(viewLifecycleOwner){ database ->
                 if (database.isNotEmpty()){
                     Log.d("RecipesFragment", "read data from database called")
                     myAdapter.setData(database[0].foodRecipe)
