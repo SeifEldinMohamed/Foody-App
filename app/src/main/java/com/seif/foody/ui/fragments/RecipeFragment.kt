@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.seif.foody.viewmodels.MainViewModel
 import com.seif.foody.R
 import com.seif.foody.adapters.RecipesAdapter
+import com.seif.foody.databinding.FragmentReciepeBinding
 import com.seif.foody.utils.NetworkResult
 import com.seif.foody.utils.observeOnce
 import com.seif.foody.viewmodels.RecipesViewModel
@@ -22,9 +23,10 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class RecipeFragment : Fragment() {
+    private var _binding : FragmentReciepeBinding? = null
+    private val binding get() = _binding!!
     private lateinit var mainViewModel: MainViewModel
     private lateinit var recipesViewModel: RecipesViewModel
-    private lateinit var mView: View
     private val myAdapter by lazy { RecipesAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,15 +40,17 @@ class RecipeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        mView = inflater.inflate(R.layout.fragment_reciepe, container, false)
+        _binding = FragmentReciepeBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = this // bec we will use live data objects in our xml
+        binding.mainViewModel = mainViewModel
         setupRecyclerView()
        // requestApiData()
         readDatabase()
-        return mView
+        return binding.root
     }
     private fun setupRecyclerView() {
-        mView.rv_recipes.layoutManager = LinearLayoutManager(requireContext())
-        mView.rv_recipes.adapter = myAdapter
+        binding.rvRecipes.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvRecipes.adapter = myAdapter
         showShimmerEffectAndHideRecyclerView()
     }
 
@@ -96,12 +100,17 @@ class RecipeFragment : Fragment() {
     }
 
     private fun showRecyclerViewAndHideShimmerEffect(){
-        mView.shimmerFrameLayout.visibility = View.GONE
-        mView.rv_recipes.visibility = View.VISIBLE
+        binding.shimmerFrameLayout.visibility = View.GONE
+        binding.rvRecipes.visibility = View.VISIBLE
     }
     private fun showShimmerEffectAndHideRecyclerView(){
-        mView.shimmerFrameLayout.visibility = View.VISIBLE
-        mView.rv_recipes.visibility = View.GONE
+        binding.shimmerFrameLayout.visibility = View.VISIBLE
+        binding.rvRecipes.visibility = View.GONE
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null // to avoid memory leaks
     }
 
 }
