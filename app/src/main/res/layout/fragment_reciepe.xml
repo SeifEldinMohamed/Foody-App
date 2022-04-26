@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/lightGray"
-        tools:context=".ui.fragments.RecipeFragment">
+        tools:context=".ui.fragments.recipes.RecipeFragment">
 
         <ImageView
             android:id="@+id/error_img"

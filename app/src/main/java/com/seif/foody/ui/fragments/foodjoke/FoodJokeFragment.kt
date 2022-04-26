@@ -1,4 +1,4 @@
-package com.seif.foody.ui.fragments
+package com.seif.foody.ui.fragments.foodjoke
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,16 +8,14 @@ import android.view.ViewGroup
 import com.seif.foody.R
 
 
-class FavouriteRecipeFragment : Fragment() {
-
+class FoodJokeFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favourite_reciepe, container, false)
+        return inflater.inflate(R.layout.fragment_food_joke, container, false)
     }
-
 
 }
