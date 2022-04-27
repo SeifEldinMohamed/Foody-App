@@ -24,7 +24,7 @@ import javax.inject.Inject
 @ActivityRetainedScoped // we used this bec this class will be used inside RecipesViewModel
 class DataStoreRepository @Inject constructor(@ApplicationContext private val context: Context) {
 
-    private object PreferenceKeys{
+    private object PreferenceKeys {
         val selectedMealType = stringPreferencesKey(PREFERENCES_MEAL_TYPE)
         val selectedMealTypeId = intPreferencesKey(PREFERENCES_MEAL_TYPE_ID)
         val selectedDietType = stringPreferencesKey(PREFERENCES_DIET_TYPE)
@@ -34,7 +34,13 @@ class DataStoreRepository @Inject constructor(@ApplicationContext private val co
     val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
         name = PREFERENCES_NAME
     )
-    suspend fun saveMealTypeAndDietType(mealType:String, mealTypeId:Int, dietType:String, dietTypeId:Int){
+
+    suspend fun saveMealTypeAndDietType(
+        mealType: String,
+        mealTypeId: Int,
+        dietType: String,
+        dietTypeId: Int
+    ) {
         context.dataStore.edit { preferences -> // of type mutable preferences
             preferences[PreferenceKeys.selectedMealType] = mealType
             preferences[PreferenceKeys.selectedMealTypeId] = mealTypeId
@@ -42,12 +48,12 @@ class DataStoreRepository @Inject constructor(@ApplicationContext private val co
             preferences[PreferenceKeys.selectedDietTypeId] = dietTypeId
         }
     }
-    val readMealAndDietType : Flow<MealAndDietType> = context.dataStore.data
+
+    val readMealAndDietType: Flow<MealAndDietType> = context.dataStore.data
         .catch { exception ->
-            if (exception is IOException){
+            if (exception is IOException) {
                 emit(emptyPreferences())
-            }
-            else{
+            } else {
                 throw exception
             }
         }
@@ -65,9 +71,10 @@ class DataStoreRepository @Inject constructor(@ApplicationContext private val co
         }
 
 }
+
 data class MealAndDietType(
-    val selectedMealType:String,
-    val selectedMealTypeId:Int,
-    val selectedDietType:String,
-    val selectedDietTypeId:Int
+    val selectedMealType: String,
+    val selectedMealTypeId: Int,
+    val selectedDietType: String,
+    val selectedDietTypeId: Int
 )
