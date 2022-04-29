@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.seif.foody.R
 import com.seif.foody.viewmodels.MainViewModel
@@ -28,6 +29,7 @@ class RecipeFragment : Fragment() {
     private lateinit var mainViewModel: MainViewModel
     private lateinit var recipesViewModel: RecipesViewModel
     private val myAdapter by lazy { RecipesAdapter() }
+    private val args by navArgs<RecipeFragmentArgs>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,7 +64,7 @@ class RecipeFragment : Fragment() {
     private fun readDatabase() {
         lifecycleScope.launch {
             mainViewModel.readRecipes.observeOnce(viewLifecycleOwner){ database ->
-                if (database.isNotEmpty()){
+                if (database.isNotEmpty() && args.backFromBottomSheet == "false"){
                     Log.d("RecipesFragment", "read data from database called")
                     myAdapter.setData(database[0].foodRecipe)
                     showRecyclerViewAndHideShimmerEffect()
