@@ -24,7 +24,7 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class RecipeFragment : Fragment() {
-    private var _binding : FragmentReciepeBinding? = null
+    private var _binding: FragmentReciepeBinding? = null
     private val binding get() = _binding!!
     private lateinit var mainViewModel: MainViewModel
     private lateinit var recipesViewModel: RecipesViewModel
@@ -46,7 +46,7 @@ class RecipeFragment : Fragment() {
         binding.lifecycleOwner = this // bec we will use live data objects in our xml
         binding.mainViewModel = mainViewModel
         setupRecyclerView()
-       // requestApiData()
+        // requestApiData()
         readDatabase()
 
         binding.recipesFab.setOnClickListener {
@@ -55,6 +55,7 @@ class RecipeFragment : Fragment() {
 
         return binding.root
     }
+
     private fun setupRecyclerView() {
         binding.rvRecipes.layoutManager = LinearLayoutManager(requireContext())
         binding.rvRecipes.adapter = myAdapter
@@ -63,20 +64,19 @@ class RecipeFragment : Fragment() {
 
     private fun readDatabase() {
         lifecycleScope.launch {
-            mainViewModel.readRecipes.observeOnce(viewLifecycleOwner){ database ->
-                if (database.isNotEmpty() && args.backFromBottomSheet == "false"){
+            mainViewModel.readRecipes.observeOnce(viewLifecycleOwner) { database ->
+                if (database.isNotEmpty() && args.backFromBottomSheet == "false") {
                     Log.d("RecipesFragment", "read data from database called")
                     myAdapter.setData(database[0].foodRecipe)
                     showRecyclerViewAndHideShimmerEffect()
-                }
-                else{
+                } else {
                     requestApiData()
                 }
             }
         }
     }
 
-    private fun requestApiData(){
+    private fun requestApiData() {
         Log.d("RecipesFragment", "request api data called")
         mainViewModel.getRecipes(recipesViewModel.applyQueries())
         mainViewModel.recipesResponse.observe(viewLifecycleOwner) { response ->
@@ -85,32 +85,38 @@ class RecipeFragment : Fragment() {
                     showRecyclerViewAndHideShimmerEffect()
                     response.data?.let { myAdapter.setData(it) }
                 }
-                is NetworkResult.Error ->{
+                is NetworkResult.Error -> {
                     showRecyclerViewAndHideShimmerEffect()
                     loadDataFromCashe()  // load previous data from database when error occurred
-                    Toast.makeText(requireContext(), response.message.toString(), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        response.message.toString(),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
-                is NetworkResult.Loading ->{
+                is NetworkResult.Loading -> {
                     showShimmerEffectAndHideRecyclerView()
                 }
             }
         }
     }
-    private fun loadDataFromCashe(){
+
+    private fun loadDataFromCashe() {
         lifecycleScope.launch {
-            mainViewModel.readRecipes.observe(viewLifecycleOwner){ database ->
-                if (database.isNotEmpty()){
+            mainViewModel.readRecipes.observe(viewLifecycleOwner) { database ->
+                if (database.isNotEmpty()) {
                     myAdapter.setData(database[0].foodRecipe)
                 }
             }
         }
     }
 
-    private fun showRecyclerViewAndHideShimmerEffect(){
+    private fun showRecyclerViewAndHideShimmerEffect() {
         binding.shimmerFrameLayout.visibility = View.GONE
         binding.rvRecipes.visibility = View.VISIBLE
     }
-    private fun showShimmerEffectAndHideRecyclerView(){
+
+    private fun showShimmerEffectAndHideRecyclerView() {
         binding.shimmerFrameLayout.visibility = View.VISIBLE
         binding.rvRecipes.visibility = View.GONE
     }
@@ -119,5 +125,4 @@ class RecipeFragment : Fragment() {
         super.onDestroy()
         _binding = null // to avoid memory leaks
     }
-
 }

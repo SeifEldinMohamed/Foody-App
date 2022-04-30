@@ -31,7 +31,7 @@ class DataStoreRepository @Inject constructor(@ApplicationContext private val co
         val selectedDietTypeId = intPreferencesKey(PREFERENCES_DIET_TYPE_ID)
     }
 
-    val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
+    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
         name = PREFERENCES_NAME
     )
 
@@ -69,7 +69,6 @@ class DataStoreRepository @Inject constructor(@ApplicationContext private val co
                 selectedDietTypeId
             )
         }
-
 }
 
 data class MealAndDietType(
