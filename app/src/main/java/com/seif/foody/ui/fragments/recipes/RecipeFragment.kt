@@ -49,7 +49,10 @@ class RecipeFragment : Fragment() {
         binding.mainViewModel = mainViewModel
         setupRecyclerView()
         // requestApiData()
-        readDatabase()
+
+        recipesViewModel.readBackOnline.observe(viewLifecycleOwner){
+            recipesViewModel.backOnline = it
+        }
 
         lifecycleScope.launchWhenStarted {
             networkListener = NetworkListener()
@@ -58,6 +61,7 @@ class RecipeFragment : Fragment() {
                     Log.d("NetworkListener", status.toString())
                     recipesViewModel.networkStatus = status
                     recipesViewModel.showNetworkStatus()
+                    readDatabase()
                 }
         }
 
