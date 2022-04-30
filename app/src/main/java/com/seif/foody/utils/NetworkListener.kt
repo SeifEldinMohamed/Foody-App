@@ -15,25 +15,25 @@ class NetworkListener : ConnectivityManager.NetworkCallback() {
         connectivityManager.registerDefaultNetworkCallback(this)
         var isConnected = false
 
-        connectivityManager.allNetworks.forEach { network ->
-            val networkCapability = connectivityManager.getNetworkCapabilities(network)
-            networkCapability?.let {
-                if (it.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)) { // if our device has internet connection
-                    isConnected = true
-                    return@forEach
-                }
-            }
-        }
-        /** try this instead of above code **/
-//        val activeNetwork = connectivityManager.activeNetwork
-//        val capabilities = connectivityManager.getNetworkCapabilities(activeNetwork)
-//        capabilities?.let {
-//            isConnected =
-//                when { // return true if there is an internet connection from wifi, cellular and ethernet
-//                    it.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) -> true
-//                    else -> false
+//        connectivityManager.allNetworks.forEach { network ->
+//            val networkCapability = connectivityManager.getNetworkCapabilities(network)
+//            networkCapability?.let {
+//                if (it.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)) { // if our device has internet connection
+//                    isConnected = true
+//                    return@forEach
 //                }
+//            }
 //        }
+        /** try this instead of above code **/
+        val activeNetwork = connectivityManager.activeNetwork
+        val capabilities = connectivityManager.getNetworkCapabilities(activeNetwork)
+        capabilities?.let {
+            isConnected =
+                when {
+                    it.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) -> true
+                    else -> false
+                }
+        }
 
         isNetworkAvailable.value = isConnected
         return isNetworkAvailable

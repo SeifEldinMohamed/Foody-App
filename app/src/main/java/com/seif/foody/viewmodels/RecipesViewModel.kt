@@ -1,6 +1,7 @@
 package com.seif.foody.viewmodels
 
 import android.app.Application
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.seif.foody.data.DataStoreRepository
@@ -26,8 +27,10 @@ class RecipesViewModel @Inject constructor(
     private val dataStoreRepository: DataStoreRepository
 ) : AndroidViewModel(application) {
 
-    private var mealType  = DEFAULT_MEAL_TYPE
-    private var dietType  = DEFAULT_DIET_TYPE
+    private var mealType = DEFAULT_MEAL_TYPE
+    private var dietType = DEFAULT_DIET_TYPE
+
+    var networkStatus = false
 
     val readMealAndDietType = dataStoreRepository.readMealAndDietType
 
@@ -44,7 +47,7 @@ class RecipesViewModel @Inject constructor(
         val queries: HashMap<String, String> = HashMap()
 
         viewModelScope.launch(Dispatchers.IO) {
-            readMealAndDietType.collect{ value -> // Accepts the given collector and emits values into it.
+            readMealAndDietType.collect { value -> // Accepts the given collector and emits values into it.
                 mealType = value.selectedMealType
                 dietType = value.selectedDietType
             }
@@ -58,5 +61,11 @@ class RecipesViewModel @Inject constructor(
         queries[QUERY_ADD_RECIPE_INFORMATION] = "true"
         queries[QUERY_FILL_INGREDIENTS] = "true"
         return queries
+    }
+
+    fun showNetworkStatus() {
+        if (!networkStatus) {
+            Toast.makeText(getApplication(), "No Internet Connection!", Toast.LENGTH_SHORT).show()
+        }
     }
 }

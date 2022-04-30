@@ -16,6 +16,7 @@ import com.seif.foody.R
 import com.seif.foody.viewmodels.MainViewModel
 import com.seif.foody.adapters.RecipesAdapter
 import com.seif.foody.databinding.FragmentReciepeBinding
+import com.seif.foody.utils.NetworkListener
 import com.seif.foody.utils.NetworkResult
 import com.seif.foody.utils.observeOnce
 import com.seif.foody.viewmodels.RecipesViewModel
@@ -30,6 +31,7 @@ class RecipeFragment : Fragment() {
     private lateinit var recipesViewModel: RecipesViewModel
     private val myAdapter by lazy { RecipesAdapter() }
     private val args by navArgs<RecipeFragmentArgs>()
+    private lateinit var networkListener: NetworkListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,10 +51,23 @@ class RecipeFragment : Fragment() {
         // requestApiData()
         readDatabase()
 
-        binding.recipesFab.setOnClickListener {
-            findNavController().navigate(R.id.action_recipeFragment_to_recipesBottomSheet)
+        lifecycleScope.launchWhenStarted {
+            networkListener = NetworkListener()
+            networkListener.checkNetworkAvailability(requireContext())
+                .collect { status ->
+                    Log.d("NetworkListener", status.toString())
+                    recipesViewModel.networkStatus = status
+                    recipesViewModel.showNetworkStatus()
+                }
         }
 
+        binding.recipesFab.setOnClickListener {
+            if (recipesViewModel.networkStatus) {
+                findNavController().navigate(R.id.action_recipeFragment_to_recipesBottomSheet)
+            } else { // no internet connection
+                recipesViewModel.showNetworkStatus()
+            }
+        }
         return binding.root
     }
 
