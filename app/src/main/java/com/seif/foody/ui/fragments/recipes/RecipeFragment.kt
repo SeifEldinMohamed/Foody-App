@@ -3,14 +3,15 @@ package com.seif.foody.ui.fragments.recipes
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.seif.foody.R
 import com.seif.foody.viewmodels.MainViewModel
 import com.seif.foody.adapters.RecipesAdapter
@@ -92,12 +93,15 @@ class RecipeFragment : Fragment(), SearchView.OnQueryTextListener {
 
     }
     override fun onQueryTextSubmit(query: String?): Boolean {
+        if(query!= null){
+            searchApiData(query)
+        }
         return true
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
         return true
-    }
+    } // it's best to search api when text submit to avoid too many unuseful requests
 
     private fun readDatabase() {
         lifecycleScope.launch {
@@ -124,7 +128,7 @@ class RecipeFragment : Fragment(), SearchView.OnQueryTextListener {
                 }
                 is NetworkResult.Error -> {
                     showRecyclerViewAndHideShimmerEffect()
-                    loadDataFromCashe()  // load previous data from database when error occurred
+                    loadDataFromCache()  // load previous data from database when error occurred
                     Toast.makeText(
                         requireContext(),
                         response.message.toString(),
@@ -138,7 +142,32 @@ class RecipeFragment : Fragment(), SearchView.OnQueryTextListener {
         }
     }
 
-    private fun loadDataFromCashe() {
+    private fun searchApiData(searchQuery:String){
+        showShimmerEffectAndHideRecyclerView()
+        mainViewModel.searchRecipes(recipesViewModel.applySearchQuery(searchQuery))
+        mainViewModel.searchedRecipesResponse.observe(viewLifecycleOwner){ response->
+            when(response){
+                is NetworkResult.Success ->{
+                    showRecyclerViewAndHideShimmerEffect()
+                    val foodRecipes = response.data
+                    foodRecipes?.let {
+                        myAdapter.setData(it)
+                    }
+                }
+                is NetworkResult.Error ->{
+                    showRecyclerViewAndHideShimmerEffect()
+                    loadDataFromCache()
+                    view?.let { Snackbar.make(it, response.message.toString(), Snackbar.LENGTH_SHORT).show() }
+                    Toast.makeText(requireContext(), response.message.toString(), Toast.LENGTH_SHORT).show()
+                }
+                is NetworkResult.Loading ->{
+                    showShimmerEffectAndHideRecyclerView()
+                }
+            }
+        }
+    }
+
+    private fun loadDataFromCache() {
         lifecycleScope.launch {
             mainViewModel.readRecipes.observe(viewLifecycleOwner) { database ->
                 if (database.isNotEmpty()) {
