@@ -10,4 +10,9 @@ interface FoodRecipesApi {
     suspend fun getRecipes(
         @QueryMap recipes: Map<String, String> // Specifies whether parameter names and values are already URL encoded
     ): Response<FoodRecipe>
+
+    @GET("/recipes/complexSearch")
+    suspend fun searchRecipes(
+        @QueryMap searchQuery: Map<String, String>
+    ): Response<FoodRecipe>
 }

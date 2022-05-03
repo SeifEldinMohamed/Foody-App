@@ -24,7 +24,7 @@ class MainViewModel @Inject constructor(
     /** ROOM DATABASE**/
 
     val readRecipes: LiveData<List<RecipesEntity>> = repository.locale.readDatabase().asLiveData()
-    private fun insertRecipes(recipesEntity:RecipesEntity){
+    private fun insertRecipes(recipesEntity: RecipesEntity) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.locale.insertRecipes(recipesEntity)
         }
@@ -32,6 +32,14 @@ class MainViewModel @Inject constructor(
 
     /** RETROFIT **/
     var recipesResponse: MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
+    var searchedRecipesResponse: MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
+
+    fun searchRecipes(searchQuery: Map<String, String>) = viewModelScope.launch {
+        searchRecipesSafeCall(searchQuery)
+    }
+
+
+
     fun getRecipes(queries: Map<String, String>) = viewModelScope.launch {
         getRecipesSafeCall(queries)
     }
@@ -46,7 +54,7 @@ class MainViewModel @Inject constructor(
 
                 // cashing data
                 val foodRecipe = recipesResponse.value!!.data
-                if (foodRecipe!=null){
+                if (foodRecipe != null) {
                     offlineCacheRecipes(foodRecipe)
                 }
             } catch (e: Exception) {
@@ -55,6 +63,21 @@ class MainViewModel @Inject constructor(
             }
         } else { // error happened
             recipesResponse.value = NetworkResult.Error("No Internet Connection")
+        }
+    }
+
+    private suspend fun searchRecipesSafeCall(searchQuery: Map<String, String>) {
+        searchedRecipesResponse.value =
+            NetworkResult.Loading() // first case while trying to connect with api until we gor a response.
+        if (hasInternetConnection()) { // if we have internet connection then we want to make get request to our api and store the result inside recipesResult Mutable live data object
+            try {
+                val response = repository.remote.searchRecipes(searchQuery)
+                searchedRecipesResponse.value = handleFoodRecipesResponse(response)
+            } catch (e: Exception) {
+                searchedRecipesResponse.value = NetworkResult.Error("Recipes Not Found")
+            }
+        } else { // error happened
+            searchedRecipesResponse.value = NetworkResult.Error("No Internet Connection")
         }
     }
 
