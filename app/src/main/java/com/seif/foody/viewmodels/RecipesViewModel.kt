@@ -77,7 +77,7 @@ class RecipesViewModel @Inject constructor(
             saveBackOnline(true)
         }
         else if (networkStatus){
-            if (backOnline){
+            if (backOnline){ // we made this backOnline to prevent showing this message while entering app every time
                 Toast.makeText(getApplication(), "we are back online.", Toast.LENGTH_SHORT).show()
                 saveBackOnline(false)
             }
