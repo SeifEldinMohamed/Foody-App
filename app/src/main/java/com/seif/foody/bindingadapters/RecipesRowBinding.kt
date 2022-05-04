@@ -1,15 +1,34 @@
 package com.seif.foody.bindingadapters
 
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
+import androidx.navigation.findNavController
 import coil.load
 import com.seif.foody.R
+import com.seif.foody.models.Result
+import com.seif.foody.ui.fragments.recipes.RecipeFragmentDirections
 
 class RecipesRowBinding {
     companion object {
+
+        @BindingAdapter("onRecipeClickListener")
+        @JvmStatic
+        fun onRecipeClickListener(recipeRowLayout: ConstraintLayout, result:Result){
+            recipeRowLayout.setOnClickListener {
+                try {
+                    val action = RecipeFragmentDirections.actionRecipeFragmentToDetailsActivity2(result)
+                    recipeRowLayout.findNavController().navigate(action)
+                }
+                catch (e: Exception){
+                    Log.d("recipeClickListener", e.toString())
+                }
+            }
+        }
 
         @BindingAdapter("loadImageFromUrl")
         @JvmStatic // to tell our compiler that this fun is static so we can access this function everywhere in this project

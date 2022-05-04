@@ -17,6 +17,9 @@
             android:name="backFromBottomSheet"
             app:argType="string"
             android:defaultValue='false' />
+        <action
+            android:id="@+id/action_recipeFragment_to_detailsActivity2"
+            app:destination="@id/detailsActivity" />
     </fragment>
     <fragment
         android:id="@+id/favouriteRecipeFragment"
@@ -40,4 +43,13 @@
                 android:name="backFromBottomSheet" />
         </action>
     </dialog>
+    <activity
+        android:id="@+id/detailsActivity"
+        android:name="com.seif.foody.ui.DetailsActivity"
+        android:label="Details"
+        tools:layout="@layout/activity_details" >
+        <argument
+            android:name="result"
+            app:argType="com.seif.foody.models.Result" />
+    </activity>
 </navigation>
