@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.core.content.ContextCompat
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.seif.foody.R
 import com.seif.foody.databinding.ActivityDetailsBinding
 import kotlinx.android.synthetic.main.activity_details.*
