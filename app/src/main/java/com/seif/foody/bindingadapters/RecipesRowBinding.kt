@@ -12,6 +12,7 @@ import coil.load
 import com.seif.foody.R
 import com.seif.foody.models.Result
 import com.seif.foody.ui.fragments.recipes.RecipeFragmentDirections
+import org.jsoup.Jsoup
 
 class RecipesRowBinding {
     companion object {
@@ -73,6 +74,14 @@ class RecipesRowBinding {
                         )
                     }
                 }
+            }
+        }
+        @BindingAdapter("parseHtml")
+        @JvmStatic
+        fun parseHtml(textView: TextView, description:String?){ // description can be nullable sometimes
+            if (description!=null){
+                val desc:String = Jsoup.parse(description).text()
+                textView.text = desc
             }
         }
     }
