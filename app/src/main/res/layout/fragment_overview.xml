@@ -196,7 +196,7 @@
         app:tint="@color/white" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/txt_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_14sdp"
@@ -219,8 +219,8 @@
         android:layout_marginTop="@dimen/_10sdp"
         android:contentDescription="@string/vegetarian_check"
         android:src="@drawable/ic_check_circle"
-        app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintStart_toStartOf="@+id/txt_title"
+        app:layout_constraintTop_toBottomOf="@+id/txt_title"
         app:tint="@color/darkGray" />
 
     <TextView
