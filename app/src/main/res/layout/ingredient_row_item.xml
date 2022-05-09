@@ -6,12 +6,11 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_130sdp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
         app:cardCornerRadius="@dimen/_12sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -20,21 +19,21 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@color/cardBackgroundColor"
             android:elevation="@dimen/_2sdp">
 
             <View
                 android:id="@+id/white_background"
                 android:layout_width="@dimen/_120sdp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/ingredient_image"
                 android:layout_width="@dimen/_100sdp"
                 android:layout_height="@dimen/_100sdp"
                 android:contentDescription="@string/ingredient_image_description"
@@ -45,7 +44,7 @@
                 app:srcCompat="@drawable/ingredient" />
 
             <TextView
-                android:id="@+id/ingredient_name"
+                android:id="@+id/txt_ingredient_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -62,21 +61,25 @@
 
             <TextView
                 android:id="@+id/txt_ingredient_consistency"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 android:text="@string/consistency"
                 android:textColor="@color/darkGray"
                 android:textSize="@dimen/_13ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.467"
                 app:layout_constraintStart_toEndOf="@+id/white_background"
-                app:layout_constraintTop_toBottomOf="@+id/txt_amount_name" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_ingredient_unit" />
 
             <TextView
                 android:id="@+id/txt_ingredient_original"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_marginBottom="@dimen/_4sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
                 android:text="@string/original"
                 android:textColor="@color/darkGray"
                 android:textSize="@dimen/_13ssp"
@@ -85,21 +88,21 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/white_background"
                 app:layout_constraintTop_toBottomOf="@+id/txt_ingredient_consistency"
-                app:layout_constraintVertical_bias="0.303" />
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/txt_ingredient_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:text="@string/_100"
                 android:textColor="@color/darkGray"
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintStart_toEndOf="@+id/white_background"
-                app:layout_constraintTop_toBottomOf="@+id/ingredient_name" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_ingredient_name" />
 
             <TextView
-                android:id="@+id/txt_amount_name"
+                android:id="@+id/txt_ingredient_unit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
