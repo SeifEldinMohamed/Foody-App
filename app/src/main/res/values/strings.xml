@@ -51,4 +51,12 @@
     <string name="healthy">Healthy</string>
     <string name="cheap">Cheap</string>
     <string name="summary">Summary</string>
+    <string name="cinnamon">Cinnamon</string>
+    <string name="_1_teaspoon">1 Teaspoon</string>
+    <string name="solid">Solid</string>
+    <string name="ingredient_image_description">ingredient image description</string>
+    <string name="consistency">Consistency</string>
+    <string name="original">Original</string>
+    <string name="grams">Grams</string>
+    <string name="_100">100</string>
 </resources>

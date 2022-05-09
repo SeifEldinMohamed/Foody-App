@@ -16,6 +16,9 @@
     <color name="yellow">#FFC114</color>
     <color name="green">#00C980</color>
 
+    <color name="ingredientStrokeColor">#DFDFDF</color>
+    <color name="cardBackgroundColor">@color/white</color>
+
     <!-- LIGHT THEME -->
     <color name="backgroundColor">@color/lightGray</color>
     <color name="placeholderColor">@color/mediumGray</color>
