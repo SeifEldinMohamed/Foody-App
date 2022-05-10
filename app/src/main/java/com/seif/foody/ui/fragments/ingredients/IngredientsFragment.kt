@@ -25,6 +25,7 @@ class IngredientsFragment : Fragment() {
 
         ingredientAdapter.addIngredientList(myBundle!!.extendedIngredients)
         view.rv_ingredients.adapter = ingredientAdapter
+        myBundle
 
         return view
     }
