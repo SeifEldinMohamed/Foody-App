@@ -1,7 +1,7 @@
 package com.seif.foody.data
 
 import com.seif.foody.data.database.RecipesDao
-import com.seif.foody.data.database.RecipesEntity
+import com.seif.foody.data.database.entities.RecipesEntity
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

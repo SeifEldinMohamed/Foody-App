@@ -5,11 +5,9 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import androidx.lifecycle.ViewModelProvider
-import com.seif.foody.data.database.RecipesEntity
+import com.seif.foody.data.database.entities.RecipesEntity
 import com.seif.foody.models.FoodRecipe
 import com.seif.foody.utils.NetworkResult
-import retrofit2.Response
 
 class RecipesBinding {
     companion object{

@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.seif.foody.R
 import com.seif.foody.databinding.IngredientRowItemBinding
 import com.seif.foody.models.ExtendedIngredient
 import com.seif.foody.utils.Constants.Companion.BASE_IMAGE_URL
@@ -27,10 +28,11 @@ class IngredientAdapter : RecyclerView.Adapter<IngredientAdapter.MyViewHolder>()
             binding.txtIngredientUnit.text = ingredient.unit
             binding.txtIngredientConsistency.text = ingredient.consistency
             binding.txtIngredientOriginal.text = ingredient.original
-            binding.ingredientImage.load(BASE_IMAGE_URL + ingredient.image)
-
+            binding.ingredientImage.load(BASE_IMAGE_URL + ingredient.image){
+                crossfade(600)
+                error(R.drawable.ic_error_placeholder)
+            }
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

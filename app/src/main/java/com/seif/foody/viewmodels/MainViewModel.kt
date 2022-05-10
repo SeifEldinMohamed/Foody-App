@@ -6,7 +6,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import androidx.lifecycle.*
 import com.seif.foody.data.Repository
-import com.seif.foody.data.database.RecipesEntity
+import com.seif.foody.data.database.entities.RecipesEntity
 import com.seif.foody.models.FoodRecipe
 import com.seif.foody.utils.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
