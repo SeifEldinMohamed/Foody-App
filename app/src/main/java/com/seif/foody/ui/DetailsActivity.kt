@@ -4,21 +4,28 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.navArgs
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
 import com.seif.foody.R
 import com.seif.foody.adapters.PagerAdapter
+import com.seif.foody.data.database.entities.FavouriteEntity
 import com.seif.foody.databinding.ActivityDetailsBinding
 import com.seif.foody.ui.fragments.ingredients.IngredientsFragment
 import com.seif.foody.ui.fragments.instructions.InstructionsFragment
 import com.seif.foody.ui.fragments.overview.OverviewFragment
+import com.seif.foody.viewmodels.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_details.*
 
-
+@AndroidEntryPoint
 class DetailsActivity : AppCompatActivity() {
     lateinit var binding: ActivityDetailsBinding
     private val args: DetailsActivityArgs by navArgs()
+    private val mainViewModel: MainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -64,7 +71,33 @@ class DetailsActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
             finish()
+        } else if (item.itemId == R.id.save_to_favourites_menu) {
+            saveToFavourites(item)
+
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun saveToFavourites(item: MenuItem) {
+        val favouriteRecipe = FavouriteEntity(
+            0,
+            args.result
+        )
+        mainViewModel.insertFavouriteRecipe(favouriteRecipe)
+        changeMenuIconColor(item, R.color.yellow)
+        showSnackBar("Saved Successfully")
+    }
+
+    private fun showSnackBar(message: String) {
+        Snackbar.make(
+            binding.detailsLayout,
+            message,
+            Snackbar.LENGTH_SHORT
+        ).setAction("Okay") {}
+            .show()
+    }
+
+    private fun changeMenuIconColor(item: MenuItem, color: Int) {
+        item.icon.setTint(ContextCompat.getColor(this, color))
     }
 }
