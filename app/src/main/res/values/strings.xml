@@ -58,4 +58,5 @@
     <string name="original">Original</string>
     <string name="grams">Grams</string>
     <string name="_100">100</string>
+    <string name="save_to_favourites">save to favourites</string>
 </resources>
