@@ -2,6 +2,7 @@ package com.seif.foody.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
@@ -20,6 +21,7 @@ import com.seif.foody.ui.fragments.overview.OverviewFragment
 import com.seif.foody.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_details.*
+import java.lang.Exception
 
 @AndroidEntryPoint
 class DetailsActivity : AppCompatActivity() {
@@ -65,7 +67,26 @@ class DetailsActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.details_menu, menu)
+        val menuItem = menu?.findItem(R.id.save_to_favourites_menu)
+        checkSavedRecipes(menuItem!!)
         return true
+    }
+
+    private fun checkSavedRecipes(menuItem: MenuItem) {
+        mainViewModel.readFavouriteRecipes.observe(this){ favouriteRecipes ->
+            try {
+                for (favRecipe in favouriteRecipes){
+                    if (favRecipe.result.id == args.result.id){ // true when entered recipes is saved in our favourites
+                        changeMenuIconColor(menuItem, R.color.yellow)
+                    }
+                    else{
+                        changeMenuIconColor(menuItem, R.color.white)
+                    }
+                }
+            } catch (e: Exception){
+                Log.d("details Activity", e.message.toString())
+            }
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
