@@ -23,7 +23,7 @@ class MainViewModel @Inject constructor(
 
     /** ROOM DATABASE**/
 
-    val readRecipes: LiveData<List<RecipesEntity>> = repository.locale.readDatabase().asLiveData()
+    val readRecipes: LiveData<List<RecipesEntity>> = repository.locale.readRecipes().asLiveData()
     private fun insertRecipes(recipesEntity: RecipesEntity) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.locale.insertRecipes(recipesEntity)
