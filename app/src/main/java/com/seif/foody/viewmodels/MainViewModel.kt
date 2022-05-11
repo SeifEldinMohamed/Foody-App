@@ -6,6 +6,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import androidx.lifecycle.*
 import com.seif.foody.data.Repository
+import com.seif.foody.data.database.entities.FavouriteEntity
 import com.seif.foody.data.database.entities.RecipesEntity
 import com.seif.foody.models.FoodRecipe
 import com.seif.foody.utils.NetworkResult
@@ -24,9 +25,30 @@ class MainViewModel @Inject constructor(
     /** ROOM DATABASE**/
 
     val readRecipes: LiveData<List<RecipesEntity>> = repository.locale.readRecipes().asLiveData()
+    val readFavouriteRecipes: LiveData<List<FavouriteEntity>> =
+        repository.locale.readFavouriteRecipes().asLiveData()
+
     private fun insertRecipes(recipesEntity: RecipesEntity) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.locale.insertRecipes(recipesEntity)
+        }
+    }
+
+    private fun insertFavouriteRecipe(favouriteEntity: FavouriteEntity) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.locale.insertFavouriteRecipe(favouriteEntity)
+        }
+    }
+
+    private fun deleteFavouriteRecipe(favouriteEntity: FavouriteEntity) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.locale.deleteFavouriteRecipe(favouriteEntity)
+        }
+    }
+
+    private fun deleteAllFavouriteRecipes() {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.locale.deleteAllFavouriteRecipes()
         }
     }
 
@@ -37,7 +59,6 @@ class MainViewModel @Inject constructor(
     fun searchRecipes(searchQuery: Map<String, String>) = viewModelScope.launch {
         searchRecipesSafeCall(searchQuery)
     }
-
 
 
     fun getRecipes(queries: Map<String, String>) = viewModelScope.launch {
