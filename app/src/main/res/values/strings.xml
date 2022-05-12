@@ -59,4 +59,6 @@
     <string name="grams">Grams</string>
     <string name="_100">100</string>
     <string name="save_to_favourites">save to favourites</string>
+    <string name="no_favourite_recipe">No Favourite Recipe</string>
+    <string name="no_data_image_description">no data image description</string>
 </resources>
