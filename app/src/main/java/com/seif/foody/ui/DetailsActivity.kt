@@ -28,6 +28,9 @@ class DetailsActivity : AppCompatActivity() {
     lateinit var binding: ActivityDetailsBinding
     private val args: DetailsActivityArgs by navArgs()
     private val mainViewModel: MainViewModel by viewModels()
+
+    private var recipeSaved: Boolean = false
+    private var recipeSavedId: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -73,17 +76,18 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private fun checkSavedRecipes(menuItem: MenuItem) {
-        mainViewModel.readFavouriteRecipes.observe(this){ favouriteRecipes ->
+        mainViewModel.readFavouriteRecipes.observe(this) { favouriteRecipes ->
             try {
-                for (favRecipe in favouriteRecipes){
-                    if (favRecipe.result.id == args.result.id){ // true when entered recipes is saved in our favourites
+                for (favRecipe in favouriteRecipes) {
+                    if (favRecipe.result.id == args.result.id) { // true when entered recipes is saved in our favourites
                         changeMenuIconColor(menuItem, R.color.yellow)
-                    }
-                    else{
+                        recipeSavedId = favRecipe.id
+                        recipeSaved = true
+                    } else {
                         changeMenuIconColor(menuItem, R.color.white)
                     }
                 }
-            } catch (e: Exception){
+            } catch (e: Exception) {
                 Log.d("details Activity", e.message.toString())
             }
         }
@@ -92,9 +96,10 @@ class DetailsActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
             finish()
-        } else if (item.itemId == R.id.save_to_favourites_menu) {
+        } else if (item.itemId == R.id.save_to_favourites_menu && !recipeSaved) {
             saveToFavourites(item)
-
+        } else if (item.itemId == R.id.save_to_favourites_menu && recipeSaved) {
+            removeRecipeFromFavourite(item)
         }
         return super.onOptionsItemSelected(item)
     }
@@ -107,6 +112,18 @@ class DetailsActivity : AppCompatActivity() {
         mainViewModel.insertFavouriteRecipe(favouriteRecipe)
         changeMenuIconColor(item, R.color.yellow)
         showSnackBar("Saved Successfully")
+        recipeSaved = true
+    }
+
+    private fun removeRecipeFromFavourite(item: MenuItem) {
+        val favouriteRecipe = FavouriteEntity(
+            recipeSavedId,
+            args.result
+        )
+        mainViewModel.deleteFavouriteRecipe(favouriteRecipe)
+        changeMenuIconColor(item, R.color.white)
+        showSnackBar("Removed from favourites")
+        recipeSaved = false
     }
 
     private fun showSnackBar(message: String) {
