@@ -79,6 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone"
+            android:layout_marginTop="@dimen/_4sdp"
             android:layout_marginStart="@dimen/_8sdp"
             android:layout_marginEnd="@dimen/_8sdp"
             app:layout_constraintBottom_toBottomOf="parent"
