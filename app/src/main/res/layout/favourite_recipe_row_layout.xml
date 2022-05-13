@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="favouriteRecipe"
             type="com.seif.foody.data.database.entities.FavouriteEntity" />
@@ -42,6 +43,7 @@
 
                     <ImageView
                         android:id="@+id/favourite_recipe_imageView"
+                        loadImageFromUrl="@{favouriteRecipe.result.image}"
                         android:layout_width="200dp"
                         android:layout_height="0dp"
                         android:contentDescription="@string/food_recipe_image_description"
@@ -62,6 +64,7 @@
                         android:ellipsize="end"
                         android:fontFamily="@font/courgette"
                         android:maxLines="2"
+                        android:text="@{favouriteRecipe.result.title}"
                         android:textColor="@color/darker"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -77,6 +80,7 @@
                         android:layout_marginTop="12dp"
                         android:ellipsize="end"
                         android:maxLines="3"
+                        android:text="@{favouriteRecipe.result.summary}"
                         android:textColor="@color/darkGray"
                         app:layout_constraintEnd_toEndOf="@+id/favourite_title_textView"
                         app:layout_constraintStart_toStartOf="@+id/favourite_title_textView"
@@ -98,6 +102,7 @@
 
                     <TextView
                         android:id="@+id/favourite_heart_textView"
+                        setNumberOfLikes="@{favouriteRecipe.result.aggregateLikes}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/_100"
@@ -121,6 +126,7 @@
 
                     <TextView
                         android:id="@+id/favourite_clock_textView"
+                        setNumberOfMinutes="@{favouriteRecipe.result.readyInMinutes}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
@@ -134,6 +140,7 @@
 
                     <ImageView
                         android:id="@+id/favourite_leaf_imageView"
+                        applyVeganColor="@{favouriteRecipe.result.vegan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:contentDescription="@string/leaf_image_description"
@@ -144,6 +151,7 @@
 
                     <TextView
                         android:id="@+id/favourite_leaf_textView"
+                        applyVeganColor="@{favouriteRecipe.result.vegan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
