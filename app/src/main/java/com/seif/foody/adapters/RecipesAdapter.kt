@@ -23,10 +23,8 @@ class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.MyViewHolder>() {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = RecipeItemRowBinding.inflate(layoutInflater, parent, false)
                 return MyViewHolder(binding)
-
             }
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

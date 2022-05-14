@@ -2,10 +2,13 @@ package com.seif.foody.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.seif.foody.R
 import com.seif.foody.data.database.entities.FavouriteEntity
 import com.seif.foody.databinding.FavouriteRecipeRowLayoutBinding
+import com.seif.foody.ui.fragments.favourites.FavouriteRecipeFragmentDirections
 import com.seif.foody.utils.RecipeDiffUtil
 
 class FavouriteRecipeAdapter: RecyclerView.Adapter<FavouriteRecipeAdapter.MyViewHolder>() {
@@ -16,6 +19,10 @@ class FavouriteRecipeAdapter: RecyclerView.Adapter<FavouriteRecipeAdapter.MyView
         fun bind(favouriteRecipe: FavouriteEntity){
             binding.favouriteRecipe = favouriteRecipe
             binding.executePendingBindings() // to update ui when changed
+            binding.favouriteRowCardView.setOnClickListener {
+                val action = FavouriteRecipeFragmentDirections.actionFavouriteRecipeFragmentToDetailsActivity(favouriteRecipe.result)
+                it.findNavController().navigate(action)
+            }
         }
     }
 
