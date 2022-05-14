@@ -31,4 +31,8 @@
     <color name="chipTextColor">@color/darkGray</color>
     
     <color name="actionBarBackgroundColor">@color/colorPrimary</color>
+
+    <color name="statusBarColor">@color/colorPrimaryDark</color>
+    <color name="contextualStatusBarColor">@color/darker</color>
+    <color name="contextualActionBarColor">@color/dark</color>
 </resources>
