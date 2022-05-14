@@ -61,4 +61,5 @@
     <string name="save_to_favourites">save to favourites</string>
     <string name="no_favourite_recipe">No Favourite Recipe</string>
     <string name="no_data_image_description">no data image description</string>
+    <string name="delete_favourite_menu">delete favourite menu</string>
 </resources>

@@ -17,7 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class FavouriteRecipeFragment : Fragment() {
     private var _binding: FragmentFavouriteReciepeBinding? = null
     private val binding get() = _binding!!
-    private val favouriteRecipeAdapter: FavouriteRecipeAdapter by lazy { FavouriteRecipeAdapter() }
+    private val favouriteRecipeAdapter: FavouriteRecipeAdapter by lazy { FavouriteRecipeAdapter(requireActivity()) }
     private val mainViewModel: MainViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
