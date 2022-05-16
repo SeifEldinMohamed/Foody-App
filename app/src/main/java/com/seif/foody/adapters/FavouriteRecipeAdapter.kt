@@ -16,6 +16,9 @@ class FavouriteRecipeAdapter(
     private val requireActivity: FragmentActivity
 ) : RecyclerView.Adapter<FavouriteRecipeAdapter.MyViewHolder>(), ActionMode.Callback {
 
+    private var multiSelection = false
+    private var selectedRecipes = ArrayList<FavouriteEntity>()
+    private val myViewHolders = ArrayList<MyViewHolder>()
     private var favouriteRecipes = emptyList<FavouriteEntity>()
 
     class MyViewHolder(val binding: FavouriteRecipeRowLayoutBinding) :
@@ -38,23 +41,70 @@ class FavouriteRecipeAdapter(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val selectedItem = favouriteRecipes[position]
-        holder.bind(selectedItem)
+        val currentRecipe = favouriteRecipes[position]
+        holder.bind(currentRecipe)
+
+        myViewHolders.add(holder)
 
         // click listener
         holder.binding.favouriteRowCardView.setOnClickListener {
-            val action =
-                FavouriteRecipeFragmentDirections.actionFavouriteRecipeFragmentToDetailsActivity(
-                    selectedItem.result
-                )
-            it.findNavController().navigate(action)
+            if (multiSelection) {
+                appliedSelection(holder, currentRecipe)
+            } else { // normal click
+                val action =
+                    FavouriteRecipeFragmentDirections.actionFavouriteRecipeFragmentToDetailsActivity(
+                        currentRecipe.result
+                    )
+                it.findNavController().navigate(action)
+            }
         }
 
         // long click listener
         holder.binding.favouriteRowCardView.setOnLongClickListener {
-            requireActivity.startActionMode(this)
-            true
+            if (!multiSelection) {
+                multiSelection = true
+                requireActivity.startActionMode(this)
+                appliedSelection(holder, currentRecipe)
+                true
+            } else {
+                multiSelection = false
+                false
+            }
+
         }
+    }
+
+    private fun appliedSelection(holder: MyViewHolder, currentRecipe: FavouriteEntity) {
+        if (selectedRecipes.contains(currentRecipe)) { // return to its default style and remove it from selectedRecipesList
+            selectedRecipes.remove(currentRecipe)
+            changeRecipeStyle(
+                holder,
+                R.color.backgroundColor,
+                R.color.ingredientStrokeColor
+            )
+        } else {
+            selectedRecipes.add(currentRecipe)
+            changeRecipeStyle(
+                holder,
+                R.color.cardBackgroundSelectedColor,
+                R.color.colorPrimary
+            )
+        }
+    }
+
+    private fun changeRecipeStyle(holder: MyViewHolder, backgroundColor: Int, strokeColor: Int) {
+        holder.binding.favouriteRecipesRowLayout.setBackgroundColor(
+            ContextCompat.getColor(
+                requireActivity,
+                backgroundColor
+            )
+        )
+        holder.binding.favouriteRowCardView.setStrokeColor(
+            ContextCompat.getColor(
+                requireActivity,
+                strokeColor
+            )
+        )
     }
 
     override fun getItemCount(): Int {
@@ -77,11 +127,21 @@ class FavouriteRecipeAdapter(
     }
 
     override fun onDestroyActionMode(mode: ActionMode?) {
+        myViewHolders.forEach { // for each selected recipe in action mode
+            changeRecipeStyle(
+                it,
+                R.color.cardBackgroundColor,
+                R.color.ingredientStrokeColor
+            )
+        }
+
+        multiSelection = false
+        selectedRecipes.clear()
         applyStatusBarColor(R.color.statusBarColor)
     }
 
-    fun applyStatusBarColor(color:Int){
-        requireActivity.window.statusBarColor = ContextCompat.getColor(requireActivity  , color)
+    fun applyStatusBarColor(color: Int) {
+        requireActivity.window.statusBarColor = ContextCompat.getColor(requireActivity, color)
     }
 
     fun addFavouriteRecipes(favouriteRecipes: List<FavouriteEntity>) {

@@ -18,6 +18,7 @@
 
     <color name="ingredientStrokeColor">#DFDFDF</color>
     <color name="cardBackgroundColor">@color/white</color>
+    <color name="cardBackgroundSelectedColor">#106200EA</color>
 
     <!-- LIGHT THEME -->
     <color name="backgroundColor">@color/lightGray</color>
