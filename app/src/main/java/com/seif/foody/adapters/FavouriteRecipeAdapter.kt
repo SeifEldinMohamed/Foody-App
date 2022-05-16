@@ -107,11 +107,9 @@ class FavouriteRecipeAdapter(
                 backgroundColor
             )
         )
-        holder.binding.favouriteRowCardView.setStrokeColor(
-            ContextCompat.getColor(
-                requireActivity,
-                strokeColor
-            )
+        holder.binding.favouriteRowCardView.strokeColor = ContextCompat.getColor(
+            requireActivity,
+            strokeColor
         )
     }
 
@@ -176,7 +174,7 @@ class FavouriteRecipeAdapter(
         applyStatusBarColor(R.color.statusBarColor)
     }
 
-    fun applyStatusBarColor(color: Int) {
+    private fun applyStatusBarColor(color: Int) {
         requireActivity.window.statusBarColor = ContextCompat.getColor(requireActivity, color)
     }
 
@@ -192,12 +190,12 @@ class FavouriteRecipeAdapter(
             rootView,
             message,
             Snackbar.LENGTH_SHORT
-        ).setAction("Okay"){}
+        ).setAction("Okay") {}
             .show()
     }
 
-    fun clearContextualActionMode(){
-        if(this::mActionMode.isInitialized){
+    fun clearContextualActionMode() { // to close contextual Action mode when favourite recipe fragment destroy
+        if (this::mActionMode.isInitialized) {
             mActionMode.finish()
         }
     }

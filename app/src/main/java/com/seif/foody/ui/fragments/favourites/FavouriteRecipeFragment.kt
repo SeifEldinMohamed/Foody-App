@@ -1,11 +1,10 @@
 package com.seif.foody.ui.fragments.favourites
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import com.google.android.material.snackbar.Snackbar
 import com.seif.foody.R
 import com.seif.foody.adapters.FavouriteRecipeAdapter
 import com.seif.foody.databinding.FragmentFavouriteReciepeBinding
@@ -34,8 +33,30 @@ class FavouriteRecipeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setHasOptionsMenu(true)
         binding.rvFavouriteRecipe.adapter = favouriteRecipeAdapter
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        MenuInflater(requireContext()).inflate(R.menu.favourite_recipes_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.deleteAll_favourite_recipes_menu){
+            mainViewModel.deleteAllFavouriteRecipes()
+            showSnackBar()
+        }
+
+      return super.onOptionsItemSelected(item)
+    }
+
+    private fun showSnackBar(){
+        Snackbar.make(
+            binding.root,
+            "All Recipes Removed",
+            Snackbar.LENGTH_SHORT
+        ).show()
     }
 
     override fun onDestroy() {
