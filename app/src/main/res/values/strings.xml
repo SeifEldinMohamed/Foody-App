@@ -63,4 +63,7 @@
     <string name="no_data_image_description">no data image description</string>
     <string name="delete_favourite_menu">delete favourite menu</string>
     <string name="delete_all">Delete All</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="joke_error_image_description">joke error image description</string>
+    <string name="error">Error</string>
 </resources>
