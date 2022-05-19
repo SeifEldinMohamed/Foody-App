@@ -23,9 +23,14 @@ object DatabaseModule {
         context,
         RecipesDatabase::class.java,
         DATABASE_NAME
-    ).build()
+    ).fallbackToDestructiveMigration()
+        .build()
 
     @Singleton
     @Provides
     fun provideDao(database: RecipesDatabase) = database.recipesDao()
 }
+
+// If you don’t want to provide migrations and you specifically want
+// your database to be cleared when you upgrade the version,
+// call fallbackToDestructiveMigration in the database builder

@@ -27,8 +27,7 @@ class MainViewModel @Inject constructor(
     /** ROOM DATABASE**/
 
     val readRecipes: LiveData<List<RecipesEntity>> = repository.locale.readRecipes().asLiveData()
-    val readFavouriteRecipes: LiveData<List<FavouriteEntity>> =
-        repository.locale.readFavouriteRecipes().asLiveData()
+    val readFavouriteRecipes: LiveData<List<FavouriteEntity>> = repository.locale.readFavouriteRecipes().asLiveData()
     val readFoodJoke: LiveData<List<FoodJokeEntity>> = repository.locale.readFoodJoke().asLiveData()
 
      private fun insertRecipes(recipesEntity: RecipesEntity) {
@@ -67,6 +66,7 @@ class MainViewModel @Inject constructor(
 
     // food joke
     var foodJokeResponse: MutableLiveData<NetworkResult<FoodJoke>> = MutableLiveData()
+
     fun searchRecipes(searchQuery: Map<String, String>) = viewModelScope.launch {
         searchRecipesSafeCall(searchQuery)
     }
