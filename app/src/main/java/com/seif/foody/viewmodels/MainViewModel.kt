@@ -7,6 +7,7 @@ import android.net.NetworkCapabilities
 import androidx.lifecycle.*
 import com.seif.foody.data.Repository
 import com.seif.foody.data.database.entities.FavouriteEntity
+import com.seif.foody.data.database.entities.FoodJokeEntity
 import com.seif.foody.data.database.entities.RecipesEntity
 import com.seif.foody.models.FoodJoke
 import com.seif.foody.models.FoodRecipe
@@ -28,6 +29,7 @@ class MainViewModel @Inject constructor(
     val readRecipes: LiveData<List<RecipesEntity>> = repository.locale.readRecipes().asLiveData()
     val readFavouriteRecipes: LiveData<List<FavouriteEntity>> =
         repository.locale.readFavouriteRecipes().asLiveData()
+    val readFoodJoke: LiveData<List<FoodJokeEntity>> = repository.locale.readFoodJoke().asLiveData()
 
      private fun insertRecipes(recipesEntity: RecipesEntity) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -38,6 +40,12 @@ class MainViewModel @Inject constructor(
     fun insertFavouriteRecipe(favouriteEntity: FavouriteEntity) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.locale.insertFavouriteRecipe(favouriteEntity)
+        }
+    }
+
+    fun insertFoodJoke(foodJokeEntity: FoodJokeEntity){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.locale.insertFoodJoke(foodJokeEntity)
         }
     }
 
@@ -71,8 +79,6 @@ class MainViewModel @Inject constructor(
     fun getFoodJoke(apiKey:String) = viewModelScope.launch {
         getFoodJokeSafeCall(apiKey)
     }
-
-
 
     private suspend fun getRecipesSafeCall(queries: Map<String, String>) {
         recipesResponse.value =
@@ -111,13 +117,18 @@ class MainViewModel @Inject constructor(
             searchedRecipesResponse.value = NetworkResult.Error("No Internet Connection")
         }
     }
-   suspend fun getFoodJokeSafeCall(apiKey: String) {
+   private suspend fun getFoodJokeSafeCall(apiKey: String) {
         foodJokeResponse.value =
             NetworkResult.Loading() // first case while trying to connect with api until we gor a response.
         if (hasInternetConnection()) { // if we have internet connection then we want to make get request to our api and store the result inside recipesResult Mutable live data object
             try {
                 val response = repository.remote.getFoodJoke(apiKey)
                 foodJokeResponse.value = handleFoodJokeResponse(response)
+
+                val foodJoke = foodJokeResponse.value!!.data
+                if (foodJoke!=null){
+                    offlineCacheFoodJoke(foodJoke)
+                }
             } catch (e: Exception) {
                 foodJokeResponse.value = NetworkResult.Error("Recipes Not Found")
             }
@@ -129,7 +140,10 @@ class MainViewModel @Inject constructor(
     private fun offlineCacheRecipes(foodRecipe: FoodRecipe) {
         val recipesEntity = RecipesEntity(foodRecipe)
         insertRecipes(recipesEntity)
-
+    }
+    private fun offlineCacheFoodJoke(foodJoke: FoodJoke) {
+        val foodJokeEntity = FoodJokeEntity(foodJoke)
+        insertFoodJoke(foodJokeEntity)
     }
 
     private fun handleFoodRecipesResponse(response: Response<FoodRecipe>): NetworkResult<FoodRecipe> {
