@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="mainViewModel"
             type="com.seif.foody.viewmodels.MainViewModel" />
@@ -74,6 +73,8 @@
 
         <ImageView
             android:id="@+id/error_joke_image"
+            readApiResponse4="@{mainViewModel.foodJokeResponse}"
+            readDatabase4="@{mainViewModel.readFoodJoke}"
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_100sdp"
             android:alpha="0.5"
@@ -84,11 +85,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.53"
+            app:layout_constraintVertical_bias="0.84000003"
             tools:ignore="ImageContrastCheck" />
 
         <TextView
             android:id="@+id/txt_error_joke"
+            readApiResponse4="@{mainViewModel.foodJokeResponse}"
+            readDatabase4="@{mainViewModel.readFoodJoke}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_12sdp"

@@ -1,12 +1,10 @@
 package com.seif.foody.ui.fragments.foodjoke
 
-import android.net.Network
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -25,10 +23,12 @@ class FoodJokeFragment : Fragment() {
     private var _binding: FragmentFoodJokeBinding? = null
     private val binding get() = _binding!!
 
+    private var foodJoke = "no food joke"
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentFoodJokeBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
@@ -38,11 +38,18 @@ class FoodJokeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setHasOptionsMenu(true)
+
         mainViewModel.getFoodJoke(API_KEY)
         mainViewModel.foodJokeResponse.observe(viewLifecycleOwner) { response ->
+
             when (response) {
                 is NetworkResult.Success -> {
                     binding.txtFoodJoke.text = response.data?.text
+                    response.data?.let {
+                        foodJoke = it.text
+                    }
                 }
                 is NetworkResult.Error -> {
                     loadDataFromCache()
@@ -61,11 +68,26 @@ class FoodJokeFragment : Fragment() {
         }
     }
 
-    fun loadDataFromCache() {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.food_joke_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.menu_share_food_joke){
+            val shareIntent = Intent(Intent.ACTION_SEND)
+            shareIntent.type = "text/plain"
+            shareIntent.putExtra(Intent.EXTRA_TEXT, foodJoke)
+            startActivity(shareIntent)
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun loadDataFromCache() {
         lifecycleScope.launch {
             mainViewModel.readFoodJoke.observe(viewLifecycleOwner) { database ->
-                if (database.isNotEmpty() && database != null) {
+                if (!database.isNullOrEmpty()) {
                     binding.txtFoodJoke.text = database[0].foodJoke.text
+                    foodJoke = database[0].foodJoke.text
                 }
             }
         }
@@ -75,5 +97,4 @@ class FoodJokeFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
-
 }
