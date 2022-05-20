@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.Foody" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Primary brand color. -->
@@ -8,6 +8,11 @@
         <item name="actionModeBackground">@color/contextualActionBarColor</item>
 
     </style>
+
+    <style name="SplashTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
+
     <style name="CustomChipStyle" parent="Widget.MaterialComponents.Chip.Filter">
         <item name="chipBackgroundColor">@color/chip_background_color</item>
         <item name="android:textColor">@color/chip_text_color</item>

@@ -42,7 +42,7 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun insertFoodJoke(foodJokeEntity: FoodJokeEntity){
+    private fun insertFoodJoke(foodJokeEntity: FoodJokeEntity){
         viewModelScope.launch(Dispatchers.IO) {
             repository.locale.insertFoodJoke(foodJokeEntity)
         }
