@@ -2,13 +2,11 @@ package com.seif.foody.bindingadapters
 
 import android.view.View
 import android.widget.ProgressBar
-import androidx.cardview.widget.CardView
 import androidx.databinding.BindingAdapter
 import com.google.android.material.card.MaterialCardView
 import com.seif.foody.data.database.entities.FoodJokeEntity
 import com.seif.foody.models.FoodJoke
 import com.seif.foody.utils.NetworkResult
-import retrofit2.Response
 
 class FoodJokeBinding {
     companion object {
@@ -46,7 +44,6 @@ class FoodJokeBinding {
                         is MaterialCardView -> view.visibility = View.VISIBLE
                     }
                 }
-
             }
         }
     }
