@@ -18,7 +18,7 @@
 
 
     <!-- LIGHT THEME -->
-    <color name="backgroundColor">@color/lightGray</color>
+    <color name="backgroundColor">@color/dark</color>
     <color name="placeholderColor">@color/mediumGray</color>
     <color name="itemColor">@color/darker</color>
 
@@ -30,20 +30,22 @@
 
     // custom card view style
     <color name="ingredientStrokeColor">#DFDFDF</color>
-    <color name="cardBackgroundColor">@color/white</color>
+    <color name="cardBackgroundColor">@color/darker</color>
     <color name="cardBackgroundSelectedColor">#106200EA</color>
-    <color name="titleColor">@color/white</color>
-    <color name="descriptionColor">@color/darkGray</color>
+    <color name="titleColor">@color/mediumGray</color>
+    <color name="descriptionColor">@color/mediumGray</color>
 
-    <color name="statusBarColor">@color/colorPrimaryDark</color>
+    <color name="statusBarColor">@color/black</color>
     <color name="contextualStatusBarColor">@color/darker</color>
     <color name="contextualActionBarColor">@color/dark</color>
 
-    <color name="actionBarBackgroundColor">@color/colorPrimary</color>
+    <color name="actionBarBackgroundColor">@color/darker</color>
 
     // custom bottomNavigationView style
-    <color name="bottomNavBackground">@color/white</color>
-    <color name="bottomNavItemColor">@color/darkGray</color>
-    <color name="bottomNavCheckedItemColor">@color/colorPrimary</color>
+    <color name="bottomNavBackground">@color/darker</color>
+    <color name="bottomNavItemColor">@color/mediumGray</color>
+    <color name="bottomNavCheckedItemColor">@color/colorAccent</color>
+
+
 
 </resources>

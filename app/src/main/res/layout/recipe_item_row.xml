@@ -33,7 +33,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white">
+                android:background="@color/cardBackgroundColor">
 
                 <ImageView
                     android:id="@+id/recipe_imageView"
@@ -59,7 +59,7 @@
                     android:fontFamily="@font/courgette"
                     android:maxLines="2"
                     android:text="@{result.title}"
-                    android:textColor="@color/darker"
+                    android:textColor="@color/titleColor"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -145,12 +145,14 @@
 
                 <TextView
                     android:id="@+id/leaf_textView"
+                    applyVeganColor="@{result.vegan}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
+                    android:layout_marginStart="@dimen/_16sdp"
                     android:text="@string/vegan"
-                    applyVeganColor="@{result.vegan}"
                     android:textAlignment="center"
+                    app:layout_constraintEnd_toEndOf="@+id/description_textView"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/clock_textView"
                     app:layout_constraintTop_toBottomOf="@+id/leaf_imageView" />
 
