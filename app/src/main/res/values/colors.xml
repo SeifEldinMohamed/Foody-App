@@ -32,7 +32,7 @@
     <color name="ingredientStrokeColor">#DFDFDF</color>
     <color name="cardBackgroundColor">@color/white</color>
     <color name="cardBackgroundSelectedColor">#106200EA</color>
-    <color name="titleColor">@color/white</color>
+    <color name="titleColor">@color/darker</color>
     <color name="descriptionColor">@color/darkGray</color>
 
     <color name="statusBarColor">@color/colorPrimaryDark</color>

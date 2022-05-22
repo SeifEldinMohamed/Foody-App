@@ -37,13 +37,13 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:strokeColor="@color/lightGray"
+                app:strokeColor="@color/ingredientStrokeColor"
                 app:strokeWidth="1dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white">
+                    android:background="@color/cardBackgroundColor">
 
                     <ImageView
                         android:id="@+id/favourite_recipe_imageView"
@@ -69,7 +69,7 @@
                         android:fontFamily="@font/courgette"
                         android:maxLines="2"
                         android:text="@{favouriteRecipe.result.title}"
-                        android:textColor="@color/darker"
+                        android:textColor="@color/titleColor"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -85,7 +85,7 @@
                         android:ellipsize="end"
                         android:maxLines="3"
                         parseHtml="@{favouriteRecipe.result.summary}"
-                        android:textColor="@color/darkGray"
+                        android:textColor="@color/descriptionColor"
                         app:layout_constraintEnd_toEndOf="@+id/favourite_title_textView"
                         app:layout_constraintStart_toStartOf="@+id/favourite_title_textView"
                         app:layout_constraintTop_toBottomOf="@+id/favourite_title_textView" />
@@ -161,6 +161,8 @@
                         android:layout_marginStart="24dp"
                         android:text="@string/vegan"
                         android:textAlignment="center"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toEndOf="@+id/favourite_clock_textView"
                         app:layout_constraintTop_toBottomOf="@+id/favourite_leaf_imageView" />
 
