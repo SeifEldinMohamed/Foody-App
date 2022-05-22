@@ -48,7 +48,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.35000002"
-            tools:ignore="ImageContrastCheck" />
+            tools:ignore="ImageContrastCheck"
+            app:tint="@color/noFavouriteRecipeImageColor" />
 
         <TextView
             android:id="@+id/txt_no_data"
@@ -61,6 +62,7 @@
             android:textSize="@dimen/_16ssp"
             android:textStyle="bold"
             android:visibility="gone"
+            android:textColor="@color/noFavouriteRecipeTextColor"
             app:layout_constraintEnd_toEndOf="@+id/no_data_imageView"
             app:layout_constraintStart_toStartOf="@+id/no_data_imageView"
             app:layout_constraintTop_toBottomOf="@+id/no_data_imageView"

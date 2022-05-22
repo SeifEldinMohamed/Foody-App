@@ -46,6 +46,7 @@
     <color name="bottomNavItemColor">@color/mediumGray</color>
     <color name="bottomNavCheckedItemColor">@color/colorAccent</color>
 
-
+    <color name="noFavouriteRecipeImageColor">@color/mediumGray</color>
+    <color name="noFavouriteRecipeTextColor">@color/mediumGray</color>
 
 </resources>
