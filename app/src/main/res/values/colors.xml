@@ -49,4 +49,7 @@
     <color name="noFavouriteRecipeImageColor">@color/darkGray</color>
     <color name="noFavouriteRecipeTextColor">@color/darkGray</color>
 
+    // food Joke Fragment
+    <drawable name="food_joke_background">@drawable/ic_food_joke_background</drawable>
+
 </resources>
