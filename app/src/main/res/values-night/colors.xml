@@ -23,10 +23,10 @@
     <color name="itemColor">@color/darker</color>
 
     <!-- CUSTOM CHIP STYLE -->
-    <color name="checkedChipBackgroundColor">#206200EA</color>
-    <color name="chipBackgroundColor">@color/lightGray</color>
-    <color name="checkedChipTextColor">@color/colorPrimary</color>
-    <color name="chipTextColor">@color/darkGray</color>
+    <color name="checkedChipBackgroundColor">@color/dark</color>
+    <color name="chipBackgroundColor">@color/darker</color>
+    <color name="checkedChipTextColor">@color/lightGray</color>
+    <color name="chipTextColor">@color/lightGray</color>
 
     // custom card view style
     <color name="ingredientStrokeColor">#DFDFDF</color>
