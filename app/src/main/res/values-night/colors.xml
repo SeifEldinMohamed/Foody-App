@@ -20,7 +20,7 @@
     <!-- LIGHT THEME -->
     <color name="backgroundColor">@color/dark</color>
     <color name="placeholderColor">@color/mediumGray</color>
-    <color name="itemColor">@color/darker</color>
+    <color name="itemColor">@color/mediumGray</color>
 
     <!-- CUSTOM CHIP STYLE -->
     <color name="checkedChipBackgroundColor">@color/dark</color>

@@ -17,7 +17,7 @@
         app:layout_constraintStart_toEndOf="@+id/txt_gluten_free"
         app:layout_constraintTop_toTopOf="@+id/txt_gluten_free"
         app:layout_constraintVertical_bias="1.0"
-        app:tint="@color/darkGray" />
+        app:tint="@color/itemColor" />
 
     <TextView
         android:id="@+id/txt_healthy"
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:text="@string/healthy"
         android:layout_marginStart="@dimen/_6sdp"
-        android:textColor="@color/darkGray"
+        android:textColor="@color/itemColor"
         app:layout_constraintBottom_toBottomOf="@+id/healthy_image"
         app:layout_constraintStart_toEndOf="@+id/healthy_image"
         app:layout_constraintTop_toTopOf="@+id/healthy_image"
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_6sdp"
         android:text="@string/cheap"
-        android:textColor="@color/darkGray"
+        android:textColor="@color/itemColor"
         app:layout_constraintBottom_toBottomOf="@+id/cheap_image"
         app:layout_constraintStart_toEndOf="@+id/cheap_image"
         app:layout_constraintTop_toTopOf="@+id/cheap_image"
@@ -54,7 +54,7 @@
         app:layout_constraintStart_toEndOf="@+id/txt_diary_free"
         app:layout_constraintTop_toTopOf="@+id/txt_diary_free"
         app:layout_constraintVertical_bias="1.0"
-        app:tint="@color/darkGray" />
+        app:tint="@color/itemColor" />
 
     <ImageView
         android:id="@+id/gluten_free_image"
@@ -67,7 +67,7 @@
         app:layout_constraintStart_toEndOf="@+id/txt_vegetarian"
         app:layout_constraintTop_toTopOf="@+id/txt_vegetarian"
         app:layout_constraintVertical_bias="0.4"
-        app:tint="@color/darkGray" />
+        app:tint="@color/itemColor" />
 
     <TextView
         android:id="@+id/txt_gluten_free"
@@ -75,7 +75,7 @@
         android:layout_height="wrap_content"
         android:text="@string/gluten_free"
         android:layout_marginStart="@dimen/_6sdp"
-        android:textColor="@color/darkGray"
+        android:textColor="@color/itemColor"
         app:layout_constraintBottom_toBottomOf="@+id/gluten_free_image"
         app:layout_constraintStart_toEndOf="@+id/gluten_free_image"
         app:layout_constraintTop_toTopOf="@+id/gluten_free_image"
@@ -87,7 +87,7 @@
         android:layout_height="wrap_content"
         android:text="@string/diary_free"
         android:layout_marginStart="@dimen/_6sdp"
-        android:textColor="@color/darkGray"
+        android:textColor="@color/itemColor"
         app:layout_constraintBottom_toBottomOf="@+id/diary_free_image"
         app:layout_constraintStart_toEndOf="@+id/diary_free_image"
         app:layout_constraintTop_toTopOf="@+id/diary_free_image"
@@ -104,7 +104,7 @@
         app:layout_constraintStart_toEndOf="@+id/txt_vegan"
         app:layout_constraintTop_toTopOf="@+id/txt_vegan"
         app:layout_constraintVertical_bias="1.0"
-        app:tint="@color/darkGray" />
+        app:tint="@color/itemColor" />
 
     <ImageView
         android:id="@+id/vegan_image"
@@ -115,7 +115,7 @@
         android:src="@drawable/ic_check_circle"
         app:layout_constraintStart_toStartOf="@+id/vegetarian_image"
         app:layout_constraintTop_toBottomOf="@+id/vegetarian_image"
-        app:tint="@color/darkGray" />
+        app:tint="@color/itemColor" />
 
     <TextView
         android:id="@+id/txt_vegan"
@@ -123,7 +123,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_6sdp"
         android:text="@string/vegan"
-        android:textColor="@color/darkGray"
+        android:textColor="@color/itemColor"
         app:layout_constraintBottom_toBottomOf="@+id/vegan_image"
         app:layout_constraintStart_toEndOf="@+id/vegan_image"
         app:layout_constraintTop_toTopOf="@+id/vegan_image"
@@ -203,7 +203,7 @@
         android:text="@string/title"
         android:textSize="@dimen/_20ssp"
         android:textStyle="bold"
-        android:textColor="@color/darkGray"
+        android:textColor="@color/titleColor"
         android:fontFamily="@font/courgette"
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_10sdp"
@@ -221,14 +221,14 @@
         android:src="@drawable/ic_check_circle"
         app:layout_constraintStart_toStartOf="@+id/txt_title"
         app:layout_constraintTop_toBottomOf="@+id/txt_title"
-        app:tint="@color/darkGray" />
+        app:tint="@color/itemColor" />
 
     <TextView
         android:id="@+id/txt_vegetarian"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/vegetarian"
-        android:textColor="@color/darkGray"
+        android:textColor="@color/itemColor"
         android:layout_marginStart="@dimen/_6sdp"
         app:layout_constraintBottom_toBottomOf="@+id/vegetarian_image"
         app:layout_constraintStart_toEndOf="@+id/vegetarian_image"
@@ -256,6 +256,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/summary"
+                android:textColor="@color/itemColor"
                 android:textSize="@dimen/_14ssp"/>
         </LinearLayout>
     </ScrollView>
