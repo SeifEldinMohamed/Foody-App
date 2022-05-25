@@ -5,28 +5,32 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.seif.foody.R
 import com.seif.foody.adapters.IngredientAdapter
+import com.seif.foody.databinding.FragmentIngredientsBinding
 import com.seif.foody.models.Result
-import kotlinx.android.synthetic.main.fragment_ingredients.view.*
 
 class IngredientsFragment : Fragment() {
+    private var _binding: FragmentIngredientsBinding? = null
+    private val binding get() = _binding!!
     private val ingredientAdapter by lazy { IngredientAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_ingredients, container, false)
-
+        _binding = FragmentIngredientsBinding.inflate(inflater, container, false)
         val args = arguments
         val myBundle: Result? = args?.getParcelable("recipeBundle")
 
         ingredientAdapter.addIngredientList(myBundle!!.extendedIngredients)
-        view.rv_ingredients.adapter = ingredientAdapter
-        myBundle
+        binding.rvIngredients.adapter = ingredientAdapter
 
-        return view
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

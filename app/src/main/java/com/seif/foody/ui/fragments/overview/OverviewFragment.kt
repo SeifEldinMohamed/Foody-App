@@ -8,56 +8,108 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import coil.load
 import com.seif.foody.R
+import com.seif.foody.databinding.FragmentOverviewBinding
 import com.seif.foody.models.Result
-import kotlinx.android.synthetic.main.fragment_overview.view.*
 import org.jsoup.Jsoup
 
 class OverviewFragment : Fragment() {
+    private var _binding: FragmentOverviewBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_overview, container, false)
+        _binding = FragmentOverviewBinding.inflate(inflater, container, false)
 
         val args = arguments
         val myBundle: Result? = args?.getParcelable("recipeBundle")
 
-        view.main_imageView.load(myBundle?.image)
-        view.txt_title.text = myBundle?.title
-        view.txt_likes.text = myBundle?.aggregateLikes.toString()
-        view.txt_time.text = myBundle?.readyInMinutes.toString()
+        binding.mainImageView.load(myBundle?.image)
+        binding.txtTitle.text = myBundle?.title
+        binding.txtLikes.text = myBundle?.aggregateLikes.toString()
+        binding.txtTime.text = myBundle?.readyInMinutes.toString()
         myBundle?.summary.let {
-            val summary:String = Jsoup.parse(it!!).text()
-            view.txt_summary.text = summary
+            val summary: String = Jsoup.parse(it!!).text()
+            binding.txtSummary.text = summary
         }
 
-        if (myBundle?.vegan == true){
-            view.vegan_image.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green))
-            view.txt_vegan.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
+        if (myBundle?.vegan == true) {
+            binding.veganImage.setColorFilter(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.green
+                )
+            )
+            binding.txtVegan.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
         }
-        if (myBundle?.vegetarian == true){
-            view.vegetarian_image.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green))
-            view.txt_vegetarian.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
+        if (myBundle?.vegetarian == true) {
+            binding.vegetarianImage.setColorFilter(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.green
+                )
+            )
+            binding.txtVegetarian.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.green
+                )
+            )
         }
-        if (myBundle?.glutenFree == true){
-            view.gluten_free_image.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green))
-            view.txt_gluten_free.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
+        if (myBundle?.glutenFree == true) {
+            binding.glutenFreeImage.setColorFilter(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.green
+                )
+            )
+            binding.txtGlutenFree.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.green
+                )
+            )
         }
-        if (myBundle?.dairyFree == true){
-            view.diary_free_image.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green))
-            view.txt_diary_free.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
+        if (myBundle?.dairyFree == true) {
+            binding.diaryFreeImage.setColorFilter(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.green
+                )
+            )
+            binding.txtDiaryFree.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.green
+                )
+            )
         }
-        if (myBundle?.cheap == true){
-            view.cheap_image.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green))
-            view.txt_cheap.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
+        if (myBundle?.cheap == true) {
+            binding.cheapImage.setColorFilter(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.green
+                )
+            )
+            binding.txtCheap.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
         }
-        if (myBundle?.veryHealthy == true){
-            view.healthy_image.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green))
-            view.txt_healthy.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
+        if (myBundle?.veryHealthy == true) {
+            binding.healthyImage.setColorFilter(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.green
+                )
+            )
+            binding.txtHealthy.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
         }
 
-        return view
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

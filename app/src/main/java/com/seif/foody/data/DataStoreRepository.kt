@@ -23,7 +23,7 @@ import javax.inject.Inject
 @ActivityRetainedScoped // we used this bec this class will be used inside RecipesViewModel
 class DataStoreRepository @Inject constructor(@ApplicationContext private val context: Context) {
 
-    companion object{
+    companion object {
         private object PreferenceKeys {
             val selectedMealType = stringPreferencesKey(PREFERENCES_MEAL_TYPE)
             val selectedMealTypeId = intPreferencesKey(PREFERENCES_MEAL_TYPE_ID)

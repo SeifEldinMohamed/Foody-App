@@ -17,7 +17,13 @@ class FavouriteRecipeFragment : Fragment() {
     private var _binding: FragmentFavouriteReciepeBinding? = null
     private val binding get() = _binding!!
     private val mainViewModel: MainViewModel by viewModels()
-    private val favouriteRecipeAdapter: FavouriteRecipeAdapter by lazy { FavouriteRecipeAdapter(requireActivity(), mainViewModel) }
+    private val favouriteRecipeAdapter: FavouriteRecipeAdapter by lazy {
+        FavouriteRecipeAdapter(
+            requireActivity(),
+            mainViewModel
+        )
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,15 +49,15 @@ class FavouriteRecipeFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.deleteAll_favourite_recipes_menu){
+        if (item.itemId == R.id.deleteAll_favourite_recipes_menu) {
             mainViewModel.deleteAllFavouriteRecipes()
             showSnackBar()
         }
 
-      return super.onOptionsItemSelected(item)
+        return super.onOptionsItemSelected(item)
     }
 
-    private fun showSnackBar(){
+    private fun showSnackBar() {
         Snackbar.make(
             binding.root,
             "All Recipes Removed",
@@ -59,12 +65,11 @@ class FavouriteRecipeFragment : Fragment() {
         ).show()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
         favouriteRecipeAdapter.clearContextualActionMode()
     }
-
 }
 
 // private var _binding : FragmentFavouriteReciepeBinding? = null

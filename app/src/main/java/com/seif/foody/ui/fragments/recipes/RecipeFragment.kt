@@ -27,6 +27,7 @@ import kotlinx.coroutines.launch
 class RecipeFragment : Fragment(), SearchView.OnQueryTextListener {
     private var _binding: FragmentReciepeBinding? = null
     private val binding get() = _binding!!
+
     private lateinit var mainViewModel: MainViewModel
     private lateinit var recipesViewModel: RecipesViewModel
     private val myAdapter by lazy { RecipesAdapter() }
@@ -56,6 +57,7 @@ class RecipeFragment : Fragment(), SearchView.OnQueryTextListener {
             recipesViewModel.backOnline = it
         }
 
+        // we need to collect the value from MutableStateFlow object only when life cycle state has started
         lifecycleScope.launchWhenStarted {
             networkListener = NetworkListener()
             networkListener.checkNetworkAvailability(requireContext())
@@ -187,10 +189,8 @@ class RecipeFragment : Fragment(), SearchView.OnQueryTextListener {
         binding.rvRecipes.visibility = View.GONE
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null // to avoid memory leaks
     }
-
-
 }

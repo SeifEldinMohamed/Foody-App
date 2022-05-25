@@ -20,7 +20,6 @@ import com.seif.foody.ui.fragments.instructions.InstructionsFragment
 import com.seif.foody.ui.fragments.overview.OverviewFragment
 import com.seif.foody.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_details.*
 import java.lang.Exception
 
 @AndroidEntryPoint
