@@ -42,9 +42,10 @@
         tools:layout="@layout/recipes_bottom_sheet" >
         <action
             android:id="@+id/action_recipesBottomSheet_to_recipeFragment"
-            app:destination="@id/recipeFragment" >
-            <argument
-                android:name="backFromBottomSheet" />
+            app:destination="@id/recipeFragment"
+            app:popUpTo="@id/recipeFragment"
+            app:popUpToInclusive="true">
+            <argument android:name="backFromBottomSheet" />
         </action>
     </dialog>
     <activity
