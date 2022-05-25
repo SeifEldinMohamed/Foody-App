@@ -106,10 +106,9 @@
 
                     <TextView
                         android:id="@+id/favourite_heart_textView"
-                        setNumberOfLikes="@{favouriteRecipe.result.aggregateLikes}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/_100"
+                        android:text="@{String.valueOf(favouriteRecipe.result.aggregateLikes)}"
                         android:textAlignment="center"
                         android:textColor="@color/red"
                         app:layout_constraintStart_toStartOf="@+id/favourite_description_textView"
@@ -130,11 +129,10 @@
 
                     <TextView
                         android:id="@+id/favourite_clock_textView"
-                        setNumberOfMinutes="@{favouriteRecipe.result.readyInMinutes}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
-                        android:text="@string/_100"
+                        android:text="@{String.valueOf(favouriteRecipe.result.readyInMinutes)}"
                         android:textAlignment="center"
                         android:textColor="@color/yellow"
                         app:layout_constraintStart_toEndOf="@+id/favourite_heart_textView"

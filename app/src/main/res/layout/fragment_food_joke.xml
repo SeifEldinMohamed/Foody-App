@@ -93,7 +93,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.84000003"
-            tools:ignore="ImageContrastCheck" />
+            tools:ignore="ImageContrastCheck"
+            app:tint="@color/itemColor" />
 
         <TextView
             android:id="@+id/txt_error_joke"
@@ -104,7 +105,7 @@
             android:layout_marginTop="@dimen/_12sdp"
             android:alpha="0.5"
             android:text="@string/error"
-            android:textColor="@color/darkGray"
+            android:textColor="@color/itemColor"
             android:textSize="@dimen/_18ssp"
             android:textStyle="bold"
             android:visibility="invisible"

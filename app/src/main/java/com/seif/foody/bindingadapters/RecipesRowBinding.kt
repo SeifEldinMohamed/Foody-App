@@ -40,18 +40,6 @@ class RecipesRowBinding {
             }
         }
 
-        @BindingAdapter("setNumberOfLikes")
-        @JvmStatic // to tell our compiler that this fun is static so we can access this function everywhere in this project
-        fun setNumberOfLikes(textView: TextView, likes:Int){
-            textView.text = likes.toString()
-        }
-
-        @BindingAdapter("setNumberOfMinutes")
-        @JvmStatic // to tell our compiler that this fun is static so we can access this function everywhere in this project
-        fun setNumberOfMinutes(textView: TextView, likes:Int){
-            textView.text = likes.toString()
-        }
-
         @BindingAdapter("applyVeganColor")
         @JvmStatic // to tell our compiler that this fun is static so we can access this function everywhere in this project
         fun applyVeganColor(view: View, vegan:Boolean){

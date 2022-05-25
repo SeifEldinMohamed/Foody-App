@@ -7,7 +7,6 @@
         <variable
             name="mainViewModel"
             type="com.seif.foody.viewmodels.MainViewModel" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,12 +28,13 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/itemColor" />
 
         <TextView
             android:id="@+id/txt_error"
-            readApiResponse2="@{mainViewModel.recipesResponse}"
-            readDatabase2="@{mainViewModel.readRecipes}"
+            readApiResponse="@{mainViewModel.recipesResponse}"
+            readDatabase="@{mainViewModel.readRecipes}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
@@ -42,6 +42,7 @@
             android:text="@string/no_internet_connection"
             android:textSize="@dimen/_14ssp"
             android:textStyle="bold"
+            android:textColor="@color/itemColor"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="@+id/error_img"
             app:layout_constraintStart_toStartOf="@+id/error_img"
