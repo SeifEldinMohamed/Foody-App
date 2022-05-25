@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    app:layoutDescription="@xml/fragment_overview_scene"
     tools:context=".ui.fragments.overview.OverviewFragment">
 
     <ImageView
@@ -23,8 +25,8 @@
         android:id="@+id/txt_healthy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/healthy"
         android:layout_marginStart="@dimen/_6sdp"
+        android:text="@string/healthy"
         android:textColor="@color/itemColor"
         app:layout_constraintBottom_toBottomOf="@+id/healthy_image"
         app:layout_constraintStart_toEndOf="@+id/healthy_image"
@@ -73,8 +75,8 @@
         android:id="@+id/txt_gluten_free"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/gluten_free"
         android:layout_marginStart="@dimen/_6sdp"
+        android:text="@string/gluten_free"
         android:textColor="@color/itemColor"
         app:layout_constraintBottom_toBottomOf="@+id/gluten_free_image"
         app:layout_constraintStart_toEndOf="@+id/gluten_free_image"
@@ -85,8 +87,8 @@
         android:id="@+id/txt_diary_free"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/diary_free"
         android:layout_marginStart="@dimen/_6sdp"
+        android:text="@string/diary_free"
         android:textColor="@color/itemColor"
         app:layout_constraintBottom_toBottomOf="@+id/diary_free_image"
         app:layout_constraintStart_toEndOf="@+id/diary_free_image"
@@ -156,13 +158,13 @@
         android:layout_marginEnd="@dimen/_12sdp"
         android:layout_marginBottom="@dimen/_12sdp"
         android:text="@string/_45"
-        android:textSize="@dimen/_12ssp"
         android:textColor="@color/white"
+        android:textSize="@dimen/_12ssp"
         app:layout_constraintBottom_toBottomOf="@+id/gradient_overlay"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
-        android:id="@+id/time_image"
+        android:id="@+id/time_imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/time_image_description"
@@ -179,13 +181,13 @@
         android:layout_marginEnd="@dimen/_12sdp"
         android:layout_marginBottom="@dimen/_12sdp"
         android:text="@string/_100"
-        android:textSize="@dimen/_12sdp"
         android:textColor="@color/white"
+        android:textSize="@dimen/_12sdp"
         app:layout_constraintBottom_toBottomOf="@+id/main_imageView"
         app:layout_constraintEnd_toStartOf="@+id/txt_time" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/likes_imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/likes_image_description"
@@ -199,14 +201,14 @@
         android:id="@+id/txt_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_14sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:fontFamily="@font/courgette"
         android:text="@string/title"
+        android:textColor="@color/titleColor"
         android:textSize="@dimen/_20ssp"
         android:textStyle="bold"
-        android:textColor="@color/titleColor"
-        android:fontFamily="@font/courgette"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -227,14 +229,15 @@
         android:id="@+id/txt_vegetarian"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_6sdp"
         android:text="@string/vegetarian"
         android:textColor="@color/itemColor"
-        android:layout_marginStart="@dimen/_6sdp"
         app:layout_constraintBottom_toBottomOf="@+id/vegetarian_image"
         app:layout_constraintStart_toEndOf="@+id/vegetarian_image"
         app:layout_constraintTop_toTopOf="@+id/vegetarian_image" />
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/_10sdp"
@@ -250,7 +253,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/txt_summary"
@@ -258,7 +261,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/summary"
                 android:textColor="@color/itemColor"
-                android:textSize="@dimen/_14ssp"/>
+                android:textSize="@dimen/_14ssp" />
         </LinearLayout>
     </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>
