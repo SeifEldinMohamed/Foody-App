@@ -67,4 +67,10 @@
     <string name="joke_error_image_description">joke error image description</string>
     <string name="error">Error</string>
     <string name="share_food_joke">Share Food Joke</string>
+    <string name="share_menu">Share</string>
+    <string name="rate_menu">Rate</string>
+    <string name="review_menu">Review</string>
+    <string name="our_apps_menu">Our Apps</string>
+    <string name="about_menu">About</string>
+    <string name="navigation_drawer_icon_description">navigation drawer icon description</string>
 </resources>

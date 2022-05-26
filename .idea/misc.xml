@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/96654/Foody/app/src/main/res/drawable-v24/icon_share.xml" value="0.146" />
         <entry key="..\:/Users/96654/Foody/app/src/main/res/drawable/gradient_overlay.xml" value="0.206" />
         <entry key="..\:/Users/96654/Foody/app/src/main/res/drawable/ic_arrow_back_white.xml" value="0.206" />
         <entry key="..\:/Users/96654/Foody/app/src/main/res/drawable/ic_error_placeholder.xml" value="0.1855" />
@@ -10,7 +11,7 @@
         <entry key="..\:/Users/96654/Foody/app/src/main/res/drawable/ic_launcher_background.xml" value="0.152" />
         <entry key="..\:/Users/96654/Foody/app/src/main/res/layout-night/fragment_food_joke.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/96654/Foody/app/src/main/res/layout/activity_details.xml" value="0.20833333333333334" />
-        <entry key="..\:/Users/96654/Foody/app/src/main/res/layout/activity_main.xml" value="0.20833333333333334" />
+        <entry key="..\:/Users/96654/Foody/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/96654/Foody/app/src/main/res/layout/favourite_recipe_row_layout.xml" value="0.4" />
         <entry key="..\:/Users/96654/Foody/app/src/main/res/layout/fragment_favourite_reciepe.xml" value="0.264" />
         <entry key="..\:/Users/96654/Foody/app/src/main/res/layout/fragment_food_joke.xml" value="0.264" />
@@ -19,6 +20,7 @@
         <entry key="..\:/Users/96654/Foody/app/src/main/res/layout/fragment_overview.xml" value="0.264" />
         <entry key="..\:/Users/96654/Foody/app/src/main/res/layout/fragment_reciepe.xml" value="0.2" />
         <entry key="..\:/Users/96654/Foody/app/src/main/res/layout/ingredient_row_item.xml" value="0.4" />
+        <entry key="..\:/Users/96654/Foody/app/src/main/res/layout/nav_drawer_header.xml" value="0.264" />
         <entry key="..\:/Users/96654/Foody/app/src/main/res/layout/placeholder_row_layout.xml" value="0.264" />
         <entry key="..\:/Users/96654/Foody/app/src/main/res/layout/recipe_item_row.xml" value="0.4" />
         <entry key="..\:/Users/96654/Foody/app/src/main/res/layout/recipes_bottom_sheet.xml" value="0.2674033149171271" />
@@ -29,6 +31,7 @@
         <entry key="..\:/Users/96654/Foody/app/src/main/res/menu/favourite_contextual_menu.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/96654/Foody/app/src/main/res/menu/favourite_recipes_menu.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/96654/Foody/app/src/main/res/menu/food_joke_menu.xml" value="0.20833333333333334" />
+        <entry key="..\:/Users/96654/Foody/app/src/main/res/menu/nav_drawer_menu.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/96654/Foody/app/src/main/res/menu/recipes_menu.xml" value="0.20833333333333334" />
       </map>
     </option>

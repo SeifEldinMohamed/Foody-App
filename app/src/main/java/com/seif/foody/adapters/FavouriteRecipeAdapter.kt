@@ -76,7 +76,6 @@ class FavouriteRecipeAdapter(
                 appliedSelection(holder, currentRecipe)
                 true
             }
-
         }
     }
 
