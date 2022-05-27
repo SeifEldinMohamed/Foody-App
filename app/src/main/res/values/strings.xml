@@ -73,4 +73,9 @@
     <string name="our_apps_menu">Our Apps</string>
     <string name="about_menu">About</string>
     <string name="navigation_drawer_icon_description">navigation drawer icon description</string>
+    <string name="about">About</string>
+    <string name="ok">OK</string>
+    <string name="foody">Foody</string>
+    <string name="version_1_0_0">Version 1:0:0</string>
+    <string name="developed_by_seif_eldin_mohamed">Developed by: Seif Eldin Mohamed</string>
 </resources>

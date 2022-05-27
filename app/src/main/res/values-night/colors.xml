@@ -53,5 +53,13 @@
     // food Joke Fragment
     <drawable name="food_joke_background">@drawable/ic_food_joke_background_dark</drawable>
 
+    // Navigation Drawer
+    <drawable name="app_icon_header">@drawable/dark_icon</drawable>
+    <color name="nav_background_color">@color/dark</color>
+    <color name="nav_item_text_color">@color/lightGray</color>
+
+    <color name="btn_ok_background">@color/darker</color>
+    <color name="floating_btn_background">@color/dark</color>
+
 
 </resources>

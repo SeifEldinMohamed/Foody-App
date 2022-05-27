@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.Window
 import android.widget.Button
-import androidx.customview.widget.Openable
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -36,11 +35,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val navView: NavigationView = findViewById(R.id.nav_drawer)
 
         navController = findNavController(R.id.nav_host_fragment)
-//        appBarConfiguration = AppBarConfiguration(setOf(
-//            R.id.recipeFragment,
-//            R.id.favouriteRecipeFragment,
-//            R.id.foodJokeFragment,
-//        ), drawerLayout)
+
         appBarConfiguration = AppBarConfiguration.Builder(
             setOf(
                 R.id.recipeFragment,
@@ -76,12 +71,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
+    override fun onBackPressed() {
+        if(binding.drawerLayout.isOpen){
+            binding.drawerLayout.close()
+        }
+        else{
+            super.onBackPressed()
+        }
+    }
+
     private fun shareApp() {
         val sendIntent = Intent(Intent.ACTION_SEND)
         sendIntent.putExtra(
             Intent.EXTRA_TEXT,
             "Download Todo It app from here:\n" +
-                    "https://play.google.com/store/apps/details?id=com.seif.todoit"
+                    "https://play.google.com/store/apps/details?id=com.seif.foody"
         )
         sendIntent.type = "text/plain"
         startActivity(Intent.createChooser(sendIntent, "Choose the app you want to share with:"))
@@ -92,7 +96,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             Intent(
                 Intent.ACTION_VIEW,
                 Uri.parse(
-                    "market://details?id=com.seif.todoit"
+                    "market://details?id=com.seif.foody"
                 )
             )
         )
@@ -104,7 +108,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 Intent.ACTION_VIEW,
                 Uri.parse(
                     "mailto:" + "seifeldinmohamed101@gmail.com"
-                            + "?subject=" + "Message from Todo It"
+                            + "?subject=" + "Message from Foody"
                 )
             )
         )
@@ -122,14 +126,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun aboutDeveloper() {
-//        val dialog = Dialog(this)
-//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-//        dialog.setContentView(R.layout.about_dialog)
-//        val btnOk = dialog.findViewById<Button>(R.id.btn_ok_about)
-//        btnOk.setOnClickListener {
-//            dialog.dismiss()
-//        }
-//        dialog.show()
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.about_dialog)
+        val btnOk = dialog.findViewById<Button>(R.id.btn_ok_about)
+        btnOk.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
     }
 
 }

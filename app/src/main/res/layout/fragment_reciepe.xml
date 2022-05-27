@@ -97,6 +97,7 @@
             android:clickable="true"
             android:contentDescription="@string/restaurant_image_description_in_floatiing_action_button"
             android:focusable="true"
+            app:backgroundTint="@color/floating_btn_background"
             android:src="@drawable/ic_restaurant"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
