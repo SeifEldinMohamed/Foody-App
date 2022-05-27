@@ -31,11 +31,13 @@ class DataStoreRepository @Inject constructor(@ApplicationContext private val co
             val selectedDietTypeId = intPreferencesKey(PREFERENCES_DIET_TYPE_ID)
             val backOnline = booleanPreferencesKey(PREFERENCES_BACK_ONLINE)
         }
+        // I put it in the companion object to solve multiple dataStores active for the same file error happened when app where in background and we reopen it again
+        private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
+            name = PREFERENCES_NAME
+        )
     }
 
-    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
-        name = PREFERENCES_NAME
-    )
+
 
     suspend fun saveBackOnline(backOnline: Boolean) {
         context.dataStore.edit { preferences ->
