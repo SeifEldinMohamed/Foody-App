@@ -3,40 +3,38 @@
 
 
 # Objective:
-Food Recipes application, where we can browse recipes from various different kind of meal and diet types.
+- Food Recipes application, where we can browse recipes from various different kind of meal and diet types.
 The app will work with both Remote and local data sources. And for Remote data source I used a third party API for food recipes,
 called Spoonacular. So basically I will send GET Request to the API and receive a list of food recipes as a Response. 
-Also the app will be able to handle no internet connection, and store or cache the data localy to our ROOM database when it's needed.
-Also from the app we will be able to search recipes from our API directly. 
-So if you have your favorite flavor you can search it here and probably you'll find many amazing recipes. 
-Next our app will have Favorites Fragment where we can save our favorite recipes for later use when we need them. 
-And finally our app will have it's fun side, and that is food joke fragment.
+
+- Also the app will be able to handle no internet connection, and store or cache the data localy to our ROOM database when it's needed.
+Also from the app we will be able to search recipes from our API directly. So if you have your favorite flavor you can search it here 
+and probably you'll find many amazing recipes, our app will have Favorites Fragment where we can save our favorite recipes for later use when we need them. 
+
+- And finally our app will have it's fun side, and that is food joke fragment.
 
 # Built With:
-• Kotlin<br />
-• ROOM Database
-• Dependency Injection - Dagger-Hilt
-• Retrofit
-• Offline Cache
-• Local & Remote Data Sources
-• Kotlin Coroutines
-• Android Architecture Component
-• Navigation Component
-• DataStore Preferences
-• Data Binding
-• LiveData
-• Flow
-• Client - Server Communication
-• Dark and Light Theme
-• Motion Layout
-• Material Components
-• Create Shimmer Effect
-• ViewPager2
-Create Contextual Action Mode
-Share Data with Other Apps
-Create Modal Bottom Sheet
-Nice looking UI Desig
+• Kotlin <br />
+• ROOM Database <br />
+• Dependency Injection - Dagger-Hilt <br />
+• Retrofit <br />
+• Offline Cache <br />
+• Kotlin Coroutines <br />
+• MVVM Architecture <br />
+• Navigation Component <br />
+• DataStore Preferences <br />
+• Data Binding <br />
+• Binding Adpaters <br />
+• LiveData <br />
+• Flow <br />
+• Motion Layout <br />
 • Recycler View + DiffUtil<br />
+• Shimmer Effect <br />
+• ViewPager2 <br />
+• Client - Server Communication <br />
+• Contextual Action Mode <br />
+• Material Components <br />
+• Material Design <br />
 
 
 # Screen Shots:
