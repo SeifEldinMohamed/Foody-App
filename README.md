@@ -44,5 +44,9 @@ and probably you'll find many amazing recipes, our app will have Favorites Fragm
 <img src = "screenshots/screen_4.jpeg" width = "300">
 <img src = "screenshots/screen_5.jpeg" width = "300">
 <img src = "screenshots/screen_6.jpeg" width = "300">
+<img src = "screenshots/screen_7.jpeg" width = "300">
+<img src = "screenshots/screen_8.jpeg" width = "300">
+<img src = "screenshots/screen_9.jpeg" width = "300">
+<img src = "screenshots/screen_10.jpeg" width = "300">
 
 
