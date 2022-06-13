@@ -264,7 +264,7 @@
                     android:id="@+id/low_FODMAP_chip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/low_fodmap" />
+                    android:text="@string/low_food_map" />
 
                 <com.google.android.material.chip.Chip
                     style="@style/CustomChipStyle"
